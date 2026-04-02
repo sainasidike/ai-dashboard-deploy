@@ -2,27 +2,79 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Dashboard - 每日更新</title>
-    <meta name="description" content="AI Dashboard - 每日自动更新 GitHub Trending、AI 产品和行业洞察">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>AI Dashboard - 每日更新 | GitHub Trending & AI 产品洞察</title>
+    <meta name="description" content="AI Dashboard 每日自动更新 GitHub Trending 热门项目、AI 产品深度调研、行业洞察。包含完整 PRD 分析、SWOT、用户画像、市场分析。">
+    <meta name="keywords" content="AI Dashboard, GitHub Trending, AI产品, 行业洞察, PRD分析, SWOT分析, AI工具">
+    <meta name="author" content="AI Dashboard Team">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-dashboard-deploy.vercel.app/">
+    <meta property="og:title" content="AI Dashboard - 每日更新 | GitHub Trending & AI 产品洞察">
+    <meta property="og:description" content="每日自动更新的 AI 行业洞察、GitHub 热门项目和 AI 产品深度分析">
+    <meta property="og:image" content="https://ai-dashboard-deploy.vercel.app/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ai-dashboard-deploy.vercel.app/">
+    <meta property="twitter:title" content="AI Dashboard - 每日更新">
+    <meta property="twitter:description" content="每日自动更新的 AI 行业洞察、GitHub 热门项目和 AI 产品深度分析">
+    <meta property="twitter:image" content="https://ai-dashboard-deploy.vercel.app/og-image.png">
+
+    <!-- 性能优化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- PWA 支持 -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AI Dashboard">
     <style>
+        :root {
+            /* 颜色变量 */
+            --primary-blue: #667eea;
+            --primary-purple: #764ba2;
+            --cyan-bright: #38bdf8;
+            --gold-accent: #fbbf24;
+            --dark-bg: #1a1f3a;
+            --dark-purple: #2d1b4e;
+            --dark-blue: #1a2332;
+
+            /* 玻璃态效果 */
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+            /* 动画缓动 */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1f3a 0%, #2d1b4e 50%, #1a2332 100%);
             background-attachment: fixed;
             min-height: 100vh;
             padding: 20px;
             color: #2d3748;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* 添加动态背景动画 */
+        /* 添加动态背景动画 - 升级版 */
         body::before {
             content: '';
             position: fixed;
@@ -31,23 +83,59 @@
             width: 100%;
             height: 100%;
             background:
-                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 70%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
             pointer-events: none;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* 添加星空效果 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 80%, white, transparent),
+                radial-gradient(1px 1px at 15% 95%, white, transparent);
+            background-size: 200% 200%;
+            animation: twinkle 15s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0.3;
             z-index: 0;
         }
 
-        /* 添加滚动进度条 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+
+        /* 添加滚动进度条 - 升级版 */
         .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #fff, #ffd700);
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #38bdf8 50%, #fbbf24 100%);
             z-index: 9999;
             transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
         }
 
         .container {
@@ -77,15 +165,20 @@
         }
 
         .header h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-            background: linear-gradient(120deg, #fff 0%, #ffd700 100%);
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow:
+                0 0 20px rgba(102, 126, 234, 0.5),
+                0 0 40px rgba(56, 189, 248, 0.3),
+                0 2px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(120deg, #fff 0%, #38bdf8 30%, #fbbf24 60%, #fff 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmer 3s ease-in-out infinite;
+            animation: shimmer 4s ease-in-out infinite;
+            letter-spacing: -1px;
         }
 
         @keyframes shimmer {
@@ -138,16 +231,22 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                0 4px 16px rgba(102, 126, 234, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 0.6s ease backwards;
+            animation: fadeInUp 0.8s ease backwards;
         }
 
         @keyframes fadeInUp {
@@ -201,9 +300,12 @@
         }
 
         .card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
-            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow:
+                0 24px 70px rgba(102, 126, 234, 0.3),
+                0 12px 35px rgba(56, 189, 248, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            border-color: rgba(102, 126, 234, 0.5);
         }
 
         .card-header {
@@ -235,25 +337,28 @@
         }
 
         .card-title {
-            font-size: 26px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
             color: #2d3748;
-            background: linear-gradient(120deg, #2d3748 0%, #667eea 100%);
+            background: linear-gradient(120deg, #1a1f3a 0%, #667eea 60%, #38bdf8 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         .project-item {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+            border: 2px solid #e5e9f5;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(102, 126, 234, 0.08);
         }
 
         .project-item::after {
@@ -273,9 +378,11 @@
 
         .project-item:hover {
             border-color: #667eea;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25);
-            transform: translateX(5px);
-            background: linear-gradient(135deg, #fff 0%, rgba(102, 126, 234, 0.03) 100%);
+            box-shadow:
+                0 12px 40px rgba(102, 126, 234, 0.25),
+                0 4px 16px rgba(56, 189, 248, 0.15);
+            transform: translateX(8px) translateY(-4px);
+            background: linear-gradient(135deg, #ffffff 0%, rgba(102, 126, 234, 0.05) 100%);
         }
 
         .project-header {
@@ -341,16 +448,19 @@
         }
 
         .tech-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #38bdf8 100%);
             color: white;
-            padding: 6px 14px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow:
+                0 4px 12px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            letter-spacing: 0.3px;
         }
 
         .tech-tag::before {
@@ -372,23 +482,30 @@
         }
 
         .tech-tag:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-4px) scale(1.08);
+            box-shadow:
+                0 8px 25px rgba(102, 126, 234, 0.5),
+                0 4px 12px rgba(56, 189, 248, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
 
         .toggle-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, #38bdf8 50%, #667eea 100%);
+            background-size: 200% auto;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
+            padding: 12px 28px;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 6px 20px rgba(102, 126, 234, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
+            letter-spacing: 0.3px;
         }
 
         .toggle-btn::before {
@@ -410,8 +527,12 @@
         }
 
         .toggle-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            background-position: right center;
+            box-shadow:
+                0 8px 30px rgba(102, 126, 234, 0.5),
+                0 4px 15px rgba(56, 189, 248, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
 
         .toggle-btn:active {
@@ -426,7 +547,7 @@
         }
 
         .item-content.expanded {
-            max-height: 2000px;
+            max-height: 20000px;
             padding-top: 15px;
         }
 
@@ -498,14 +619,15 @@
             line-height: 1.8;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease, opacity 0.5s ease;
+            transition: max-height 0.6s ease, opacity 0.4s ease, padding 0.4s ease;
             opacity: 0;
-            padding-left: 30px;
+            padding: 0 4px 0 30px;
         }
 
         .insight-item.expanded .qa-answer {
-            max-height: 10000px;
-            margin-top: 15px;
+            max-height: 20000px;
+            margin-top: 10px;
+            padding: 0 4px 10px 30px;
             opacity: 1;
         }
 
@@ -517,21 +639,7 @@
         }
 
         .loading::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 50px;
-            margin: 20px auto;
-            border: 4px solid rgba(102, 126, 234, 0.2);
-            border-top-color: #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            display: none;
         }
 
         .footer {
@@ -668,8 +776,65 @@
     </style>
 </head>
 <body>
-    <div class="scroll-progress"></div>
+    <!-- 🆕 跳过导航链接（可访问性） -->
+    <a href="#main-content" class="skip-link" style="
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #667eea;
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 0 0 4px 0;
+        z-index: 10000;
+        font-weight: 600;
+    ">跳转到主要内容</a>
+
+    <style>
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+
+    <div class="scroll-progress" role="progressbar" aria-label="页面滚动进度" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
     <div class="container">
+        <!-- 🆕 搜索功能 -->
+        <div id="search-container" style="position: sticky; top: 20px; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            <div style="position: relative;">
+                <input
+                    type="search"
+                    id="search-input"
+                    placeholder="搜索项目、产品或洞察... (快捷键: Ctrl/Cmd + K)"
+                    aria-label="搜索内容"
+                    autocomplete="off"
+                    style="
+                        width: 100%;
+                        padding: 12px 45px 12px 20px;
+                        font-size: 16px;
+                        border: 2px solid #e2e8f0;
+                        border-radius: 25px;
+                        outline: none;
+                        transition: all 0.3s ease;
+                        font-family: inherit;
+                    "
+                >
+                <span class="keyboard-hint" aria-hidden="true" style="
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 12px;
+                    color: #718096;
+                    padding: 2px 8px;
+                    background: #edf2f7;
+                    border-radius: 4px;
+                    font-family: monospace;
+                ">⌘K</span>
+            </div>
+        </div>
+
+        <header role="banner">
         <div class="header">
             <h1>🚀 AI Dashboard</h1>
             <p>每日自动更新 · GitHub Trending · AI 产品 · 行业洞察</p>
@@ -677,11 +842,12 @@
 
         <div class="update-info">
             <span id="lastUpdate">⏰ 正在加载数据...</span>
-        </div>
+        </header>
 
+        <main id="main-content" role="main" aria-label="主要内容">
         <div class="grid">
             <!-- GitHub Trending -->
-            <div class="card">
+            <div class="card" role="article" aria-label="GitHub Trending 热门项目">
                 <div class="card-header">
                     <span class="card-icon">🔥</span>
                     <h2 class="card-title">GitHub Trending</h2>
@@ -690,7 +856,7 @@
             </div>
 
             <!-- AI Products -->
-            <div class="card">
+            <div class="card" role="article" aria-label="热门 AI 产品">
                 <div class="card-header">
                     <span class="card-icon">🚀</span>
                     <h2 class="card-title">热门 AI 产品</h2>
@@ -700,7 +866,7 @@
         </div>
 
         <!-- Inspiration Library -->
-        <div class="card">
+        <div class="card" role="article" aria-label="AI 产品灵感库">
             <div class="card-header">
                 <span class="card-icon">💡</span>
                 <h2 class="card-title">AI 产品灵感库</h2>
@@ -709,7 +875,7 @@
         </div>
 
         <!-- AI Insights -->
-        <div class="card">
+        <div class="card" role="article" aria-label="AI 行业洞察">
             <div class="card-header">
                 <span class="card-icon">📚</span>
                 <h2 class="card-title">AI 行业洞察</h2>
@@ -718,11 +884,12 @@
                 <div class="loading">加载中...</div>
             </div>
         </div>
+    </main>
 
-        <div class="footer">
-            <p>🤖 Powered by AI · 数据每天 10:00 自动更新</p>
-            <p>💻 Open Source on <a href="https://github.com" style="color: white; text-decoration: underline;">GitHub</a></p>
-        </div>
+    <footer class="footer" role="contentinfo">
+        <p>🤖 Powered by AI · 数据每天 10:00 自动更新</p>
+        <p>💻 Open Source on <a href="https://github.com" style="color: white; text-decoration: underline;">GitHub</a></p>
+    </footer>
     </div>
 
     <script>
@@ -742,12 +909,31 @@
         // 加载数据
         async function loadData() {
             try {
-                const response = await fetch('data.json');
-                const data = await response.json();
+                // 添加时间戳防止缓存
+                const timestamp = new Date().getTime();
+                const response = await fetch(`data.json?t=${timestamp}`);
+                let data = await response.json();
 
                 // 更新时间
                 document.getElementById('lastUpdate').textContent =
                     `⏰ 最后更新: ${new Date(data.lastUpdate).toLocaleString('zh-CN')}`;
+
+                // 清理所有数据中的 markdown 符号和 HTML 特殊字符
+                function cleanData(obj) {
+                    if (typeof obj === 'string') {
+                        return obj.replace(/</g, '＜').replace(/>/g, '＞')
+                                  .replace(/\*\*([^*]+)\*\*/g, '$1')
+                                  .replace(/\*([^*]+)\*/g, '$1');
+                    }
+                    if (Array.isArray(obj)) return obj.map(cleanData);
+                    if (obj && typeof obj === 'object') {
+                        var out = {};
+                        for (var k in obj) { if (obj.hasOwnProperty(k)) out[k] = cleanData(obj[k]); }
+                        return out;
+                    }
+                    return obj;
+                }
+                data = cleanData(data);
 
                 // 渲染 GitHub 项目
                 renderGitHub(data.githubTrending);
@@ -772,11 +958,11 @@
                 const research = project.detailedResearch || project.detailedAnalysis;
                 const hasDetails = !!research;
                 return `
-                <div class="project-item">
+                <div class="project-item" onclick="toggleCard(this)" style="cursor: pointer;">
                     <div class="project-header">
                         <div>
                             <div class="project-name">
-                                <a href="${project.url}" target="_blank">${project.author}/${project.name}</a>
+                                <a href="${project.url}" target="_blank" onclick="event.stopPropagation();">${project.author}/${project.name}</a>
                             </div>
                             <div class="description">${project.description}</div>
                             <div class="stats">
@@ -978,114 +1164,378 @@
                         ` : ''}
 
                     </div>
-                    <button class="toggle-btn" onclick="toggleContent('github-${index}', this)" style="margin-top: 10px;">查看完整PRD调研报告 ▼</button>
+                    <div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>
                     ` : ''}
                 </div>
             `}).join('');
+        }
+
+        function escHTML(str) {
+            if (typeof str !== 'string') return str;
+            var s = str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            s = s.replace(/\*\*([^*]+)\*\*/g, '$1');
+            s = s.replace(/\*([^*]+)\*/g, '$1');
+            return s;
+        }
+
+        function buildResearchHTML(research, index) {
+            let html = '';
+            if (!research) return '';
+
+            // Shared styles
+            var S = {
+                section: 'padding: 22px; border-radius: 16px; margin: 16px 0; text-align: left;',
+                h3: 'margin: 0 0 16px 0; font-size: 17px; font-weight: 800; letter-spacing: 0.3px;',
+                subhead: 'font-size: 14px; font-weight: 700; color: #4a5568; margin: 18px 0 10px 0; padding-bottom: 6px; border-bottom: 2px solid rgba(0,0,0,0.06);',
+                card: 'margin: 8px 0; padding: 14px 16px; background: white; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); line-height: 1.7; font-size: 14px; text-align: left;',
+                badge: 'display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-right: 6px; flex-shrink: 0;',
+                row: 'display: flex; gap: 12px; align-items: flex-start;',
+                label: 'font-weight: 700; font-size: 13px; white-space: nowrap; flex-shrink: 0;',
+                text: 'color: #4a5568; line-height: 1.7; font-size: 14px;'
+            };
+
+            // Module 1: 调研背景与目标
+            if (research.researchBackground) {
+                var rb = research.researchBackground;
+                html += '<div style="' + S.section + ' background: linear-gradient(135deg, #eef2ff, #f5f3ff); border-left: 4px solid #667eea;">';
+                html += '<h3 style="' + S.h3 + ' color: #667eea;">📋 调研背景与目标</h3>';
+                var bgItems = [
+                    {icon: '💡', label: '调研背景', val: rb.why, color: '#667eea'},
+                    {icon: '🎯', label: '核心目标', val: rb.coreObjective, color: '#8b5cf6'},
+                    {icon: '📊', label: '调研范围', val: rb.scope, color: '#6366f1'}
+                ];
+                bgItems.forEach(function(item) {
+                    html += '<div style="' + S.card + ' border-left: 3px solid ' + item.color + ';">';
+                    html += '<div style="' + S.row + '">';
+                    html += '<span style="font-size: 18px; flex-shrink: 0;">' + item.icon + '</span>';
+                    html += '<div><div style="font-weight: 700; color: ' + item.color + '; font-size: 13px; margin-bottom: 4px;">' + item.label + '</div>';
+                    html += '<div style="' + S.text + '">' + escHTML(item.val) + '</div></div>';
+                    html += '</div></div>';
+                });
+                html += '</div>';
+            }
+
+            // Module 2: 市场与宏观环境
+            if (research.marketEnvironment) {
+                var me = research.marketEnvironment;
+                html += '<div style="' + S.section + ' background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border-left: 4px solid #10b981;">';
+                html += '<h3 style="' + S.h3 + ' color: #10b981;">🌍 市场与宏观环境</h3>';
+                if (me.pest) {
+                    html += '<div style="' + S.subhead + '">📈 PEST 分析</div>';
+                    var pestItems = [
+                        {icon: '🏛️', label: '政策', val: me.pest.political, bg: '#dbeafe', color: '#1d4ed8'},
+                        {icon: '💹', label: '经济', val: me.pest.economic, bg: '#d1fae5', color: '#047857'},
+                        {icon: '👥', label: '社会', val: me.pest.social, bg: '#fef3c7', color: '#b45309'},
+                        {icon: '⚙️', label: '技术', val: me.pest.technology, bg: '#ede9fe', color: '#6d28d9'}
+                    ];
+                    html += '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">';
+                    pestItems.forEach(function(item) {
+                        html += '<div style="' + S.card + ' border-top: 3px solid ' + item.color + ';">';
+                        html += '<div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">';
+                        html += '<span style="' + S.badge + ' background: ' + item.bg + '; color: ' + item.color + ';">' + item.icon + ' ' + item.label + '</span>';
+                        html += '</div>';
+                        html += '<div style="' + S.text + '">' + escHTML(item.val) + '</div>';
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                }
+                if (me.marketSize) {
+                    html += '<div style="' + S.subhead + '">💰 市场规模</div>';
+                    var sizeItems = [
+                        {key: 'TAM', val: me.marketSize.tam, color: '#667eea', bg: 'linear-gradient(135deg, #eef2ff, #e0e7ff)'},
+                        {key: 'SAM', val: me.marketSize.sam, color: '#8b5cf6', bg: 'linear-gradient(135deg, #f5f3ff, #ede9fe)'},
+                        {key: 'SOM', val: me.marketSize.som, color: '#06b6d4', bg: 'linear-gradient(135deg, #ecfeff, #cffafe)'},
+                        {key: 'CAGR', val: me.marketSize.cagr, color: '#10b981', bg: 'linear-gradient(135deg, #ecfdf5, #d1fae5)'}
+                    ];
+                    html += '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">';
+                    sizeItems.forEach(function(item) {
+                        html += '<div style="' + S.card + ' background: ' + item.bg + '; border: 1px solid rgba(0,0,0,0.04);">';
+                        html += '<div style="' + S.badge + ' background: ' + item.color + '; color: white; margin-bottom: 8px;">' + item.key + '</div>';
+                        html += '<div style="' + S.text + '">' + escHTML(item.val) + '</div>';
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                }
+                if (me.competitiveLandscape) {
+                    html += '<div style="' + S.subhead + '">🏆 竞争格局</div>';
+                    html += '<div style="' + S.card + ' background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 1px solid rgba(245,158,11,0.15);">';
+                    html += '<div style="' + S.text + '">' + escHTML(me.competitiveLandscape) + '</div></div>';
+                }
+                html += '</div>';
+            }
+
+            // Module 3: 用户与需求洞察
+            if (research.userInsights) {
+                var ui = research.userInsights;
+                html += '<div style="' + S.section + ' background: linear-gradient(135deg, #fdf2f8, #fce7f3); border-left: 4px solid #ec4899;">';
+                html += '<h3 style="' + S.h3 + ' color: #ec4899;">👥 用户与需求洞察</h3>';
+                if (ui.targetUsers) {
+                    html += '<div style="' + S.subhead + '">🎭 目标用户画像</div>';
+                    var userColors = ['#667eea', '#ec4899', '#f59e0b'];
+                    ui.targetUsers.forEach(function(user, i) {
+                        var uc = userColors[i % userColors.length];
+                        html += '<div style="' + S.card + ' border-left: 4px solid ' + uc + '; padding: 18px;">';
+                        html += '<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">';
+                        html += '<div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, ' + uc + ', ' + uc + '88); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 16px;">' + (i+1) + '</div>';
+                        html += '<div><div style="font-weight: 700; color: ' + uc + '; font-size: 15px;">' + escHTML(user.persona) + '</div></div>';
+                        html += '</div>';
+                        html += '<div style="display: grid; gap: 8px;">';
+                        html += '<div style="display: flex; gap: 8px; align-items: flex-start;"><span style="' + S.badge + ' background: #f3f4f6; color: #6b7280;">描述</span><span style="' + S.text + '">' + escHTML(user.description) + '</span></div>';
+                        html += '<div style="display: flex; gap: 8px; align-items: flex-start;"><span style="' + S.badge + ' background: #fef2f2; color: #dc2626;">痛点</span><span style="' + S.text + '">' + escHTML(user.painPoint) + '</span></div>';
+                        html += '<div style="display: flex; gap: 8px; align-items: flex-start;"><span style="' + S.badge + ' background: #f0fdf4; color: #16a34a;">付费</span><span style="' + S.text + '">' + escHTML(user.paymentWillingness) + '</span></div>';
+                        html += '<div style="padding: 10px 14px; background: #f8fafc; border-radius: 8px; border-left: 3px solid #cbd5e1; font-style: italic; color: #64748b; font-size: 13px; line-height: 1.6;">"' + escHTML(user.quote) + '"</div>';
+                        html += '</div></div>';
+                    });
+                }
+                if (ui.keyInsights) {
+                    html += '<div style="' + S.subhead + '">💡 关键洞察</div>';
+                    ui.keyInsights.forEach(function(insight, i) {
+                        html += '<div style="' + S.card + ' border-left: 3px solid #ec4899; display: flex; gap: 10px; align-items: flex-start;">';
+                        html += '<span style="' + S.badge + ' background: linear-gradient(135deg, #ec4899, #f472b6); color: white;">' + (i+1) + '</span>';
+                        html += '<span style="' + S.text + '">' + escHTML(insight) + '</span>';
+                        html += '</div>';
+                    });
+                }
+                html += '</div>';
+            }
+
+            // Module 4: 竞品深度拆解
+            if (research.competitorAnalysis) {
+                var ca = research.competitorAnalysis;
+                html += '<div style="' + S.section + ' background: linear-gradient(135deg, #f5f3ff, #ede9fe); border-left: 4px solid #8b5cf6;">';
+                html += '<h3 style="' + S.h3 + ' color: #8b5cf6;">🔍 竞品深度拆解</h3>';
+                var caItems = [
+                    {icon: '⚔️', label: '直接竞品', val: ca.directCompetitors, color: '#dc2626', bg: '#fef2f2'},
+                    {icon: '🔄', label: '间接竞品', val: ca.indirectCompetitors, color: '#f59e0b', bg: '#fffbeb'},
+                    {icon: '🏅', label: '标杆参照', val: ca.benchmarks, color: '#8b5cf6', bg: '#f5f3ff'}
+                ];
+                caItems.forEach(function(item) {
+                    if (!item.val) return;
+                    html += '<div style="' + S.card + '">';
+                    html += '<div style="display: flex; gap: 10px; align-items: flex-start;">';
+                    html += '<span style="' + S.badge + ' background: ' + item.bg + '; color: ' + item.color + ';">' + item.icon + ' ' + item.label + '</span>';
+                    html += '<span style="' + S.text + '">' + escHTML(item.val) + '</span>';
+                    html += '</div></div>';
+                });
+                html += '</div>';
+            }
+
+            // Module 5: 核心发现与差异化
+            if (research.findings) {
+                var f = research.findings;
+                html += '<div style="' + S.section + ' background: linear-gradient(135deg, #fffbeb, #fef3c7); border-left: 4px solid #f59e0b;">';
+                html += '<h3 style="' + S.h3 + ' color: #f59e0b;">💡 核心发现与差异化</h3>';
+                if (f.swot) {
+                    html += '<div style="' + S.subhead + '">⚖️ SWOT 分析</div>';
+                    var swotItems = [
+                        {title: '优势', icon: '💪', arr: f.swot.strengths, color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0'},
+                        {title: '劣势', icon: '⚠️', arr: f.swot.weaknesses, color: '#dc2626', bg: '#fef2f2', border: '#fecaca'},
+                        {title: '机会', icon: '🚀', arr: f.swot.opportunities, color: '#2563eb', bg: '#eff6ff', border: '#bfdbfe'},
+                        {title: '威胁', icon: '⚡', arr: f.swot.threats, color: '#9333ea', bg: '#faf5ff', border: '#e9d5ff'}
+                    ];
+                    html += '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">';
+                    swotItems.forEach(function(item) {
+                        html += '<div style="background: ' + item.bg + '; border: 1px solid ' + item.border + '; border-radius: 12px; padding: 14px; text-align: left;">';
+                        html += '<div style="font-weight: 700; color: ' + item.color + '; font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">' + item.icon + ' ' + item.title + '</div>';
+                        item.arr.forEach(function(s) {
+                            html += '<div style="margin: 6px 0; padding: 6px 10px; background: white; border-radius: 8px; font-size: 13px; line-height: 1.6; color: #4a5568; box-shadow: 0 1px 2px rgba(0,0,0,0.04);">• ' + escHTML(s) + '</div>';
+                        });
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                }
+                if (f.keyFindings) {
+                    html += '<div style="' + S.subhead + '">🔍 关键发现</div>';
+                    f.keyFindings.forEach(function(finding, i) {
+                        html += '<div style="' + S.card + ' border-left: 4px solid #f59e0b; padding: 18px;">';
+                        html += '<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">';
+                        html += '<div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #fbbf24); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 13px;">' + (i+1) + '</div>';
+                        html += '<div style="font-weight: 700; color: #92400e; font-size: 15px;">' + escHTML(finding.title) + '</div>';
+                        html += '</div>';
+                        html += '<div style="' + S.text + ' margin-bottom: 10px;">' + escHTML(finding.detail) + '</div>';
+                        html += '<div style="display: inline-block; padding: 4px 12px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 20px; font-size: 12px; font-weight: 600; color: #92400e;">影响: ' + escHTML(finding.impact) + '</div>';
+                        html += '</div>';
+                    });
+                }
+                html += '</div>';
+            }
+
+            // Module 6: 结论与行动建议
+            if (research.recommendations) {
+                var rec = research.recommendations;
+                html += '<div style="' + S.section + ' background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-left: 4px solid #4f46e5;">';
+                html += '<h3 style="' + S.h3 + ' color: #4f46e5;">🎯 结论与行动建议</h3>';
+                if (rec.conclusion) {
+                    html += '<div style="padding: 16px 18px; background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 12px; margin-bottom: 16px;">';
+                    html += '<div style="color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 600; margin-bottom: 6px;">📌 核心结论</div>';
+                    html += '<div style="color: white; line-height: 1.8; font-size: 14px; font-weight: 500;">' + escHTML(rec.conclusion) + '</div>';
+                    html += '</div>';
+                }
+                if (rec["do"]) {
+                    html += '<div style="' + S.subhead + '">✅ 建议执行</div>';
+                    var prioColors = {'P0': '#dc2626', 'P1': '#f59e0b', 'P2': '#3b82f6'};
+                    rec["do"].slice(0, 3).forEach(function(action) {
+                        var pc = prioColors[action.priority] || '#6b7280';
+                        html += '<div style="' + S.card + ' border-left: 4px solid ' + pc + '; padding: 16px;">';
+                        html += '<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">';
+                        html += '<span style="' + S.badge + ' background: ' + pc + '; color: white;">' + escHTML(action.priority) + '</span>';
+                        html += '<span style="font-weight: 700; color: #1e293b; font-size: 14px;">' + escHTML(action.action) + '</span>';
+                        html += '</div>';
+                        html += '<div style="display: grid; gap: 4px; font-size: 13px;">';
+                        html += '<div style="' + S.text + '"><span style="color: #9ca3af;">原因:</span> ' + escHTML(action.why) + '</div>';
+                        html += '<div style="' + S.text + '"><span style="color: #9ca3af;">时间:</span> ' + escHTML(action.timeline) + '</div>';
+                        html += '</div></div>';
+                    });
+                }
+                html += '</div>';
+            }
+
+            return html;
         }
 
         function renderProducts(products) {
             const container = document.getElementById('products-content');
-            container.innerHTML = products.map((product, index) => {
-                const hasDetails = product.detailedResearch;
-                return `
-                <div class="project-item">
-                    <div class="project-name">${product.name}</div>
-                    <div class="description">${product.tagline}</div>
-                    <div class="stats">
-                        <span class="stat-badge">🔥 评分: ${product.score}</span>
-                        <span class="stat-badge">📁 ${product.category}</span>
-                    </div>
-                    <div class="tech-stack">
-                        ${product.features.map(f => `<span class="tech-tag">${f}</span>`).join('')}
-                    </div>
-                    ${hasDetails ? `
-                    <div class="item-content" id="product-${index}">
-                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                            <h4 style="color: #667eea; margin-bottom: 10px;">📋 产品概述</h4>
-                            <p style="line-height: 1.8;">${product.detailedResearch.productOverview}</p>
-                        </div>
-                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                            <h4 style="color: #667eea; margin-bottom: 10px;">💰 定价策略</h4>
-                            ${Object.entries(product.detailedResearch.pricingStrategy).map(([key, value]) =>
-                                `<div style="margin: 8px 0; line-height: 1.6;"><strong>${key}:</strong> ${value}</div>`
-                            ).join('')}
-                        </div>
-                        ${product.detailedResearch.competitiveAdvantage ? `
-                        <div style="background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(56, 178, 172, 0.1)); padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #48bb78;">
-                            <h4 style="color: #48bb78; margin-bottom: 10px;">🥇 竞争优势</h4>
-                            ${product.detailedResearch.competitiveAdvantage.map(a => `<div style="margin: 8px 0; line-height: 1.6;">• ${a}</div>`).join('')}
-                        </div>
-                        ` : ''}
-                    </div>
-                    <button class="toggle-btn" onclick="toggleContent('product-${index}', this)" style="margin-top: 10px;">查看完整调研 ▼</button>
-                    ` : ''}
-                </div>
-            `}).join('');
+            container.innerHTML = products.map(function(product, index) {
+                const research = product.detailedResearch;
+                let html = '<div class="project-item" onclick="toggleCard(this)" style="cursor: pointer;">';
+                html += '<div class="project-name">' + escHTML(product.name) + '</div>';
+                html += '<div class="description">' + escHTML(product.tagline) + '</div>';
+                html += '<div class="stats">';
+                html += '<span class="stat-badge">🔥 评分: ' + product.score + '</span>';
+                html += '<span class="stat-badge">📁 ' + escHTML(product.category) + '</span>';
+                html += '</div>';
+                html += '<div class="tech-stack">';
+                product.features.forEach(function(f) { html += '<span class="tech-tag">' + escHTML(f) + '</span>'; });
+                html += '</div>';
+                if (research) {
+                    html += '<div class="item-content" id="product-' + index + '">';
+                    html += buildResearchHTML(research, index);
+                    html += '</div>';
+                    html += '<div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>';
+                }
+                html += '</div>';
+                return html;
+            }).join('');
         }
 
         function renderInspiration(inspirations) {
             const container = document.getElementById('inspiration-content');
-            container.innerHTML = inspirations.map((item, index) => {
-                const hasDetails = item.completeResearch;
-                return `
-                <div class="project-item">
-                    <div style="font-size: 48px; margin-bottom: 10px;">${item.icon}</div>
-                    <div class="project-name">${item.name}</div>
-                    <div class="description">${item.tagline}</div>
-                    <div class="stats">
-                        <span class="stat-badge">🔥 热度: ${item.score}</span>
-                        <span class="stat-badge">💬 Reddit: ${item.sources.reddit}</span>
-                        <span class="stat-badge">🐦 Twitter: ${item.sources.twitter}</span>
-                    </div>
-                    <div class="item-content" id="inspiration-${index}">
-                        ${hasDetails ? `
-                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                            <h4 style="color: #667eea; margin-bottom: 10px;">📊 市场机会</h4>
-                            <div style="margin: 8px 0; line-height: 1.6;"><strong>市场规模:</strong> ${hasDetails.marketOpportunity.size}</div>
-                            <div style="margin-top: 10px;"><strong>核心痛点:</strong></div>
-                            ${hasDetails.marketOpportunity.painPoints.map(p => `<div style="margin: 5px 0; line-height: 1.6;">${p}</div>`).join('')}
-                        </div>
-                        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 15px; border-radius: 8px; margin: 10px 0; border-left: 4px solid #667eea;">
-                            <h4 style="color: #667eea; margin-bottom: 10px;">💡 优化灵感</h4>
-                            ${hasDetails.optimizationIdeas ? hasDetails.optimizationIdeas.map(idea => `<div style="margin: 8px 0; padding: 8px; background: white; border-radius: 5px; line-height: 1.6;">${idea}</div>`).join('') : ''}
-                        </div>
-                        ${hasDetails.businessModel ? `
-                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin: 10px 0;">
-                            <h4 style="color: #48bb78; margin-bottom: 10px;">💰 商业模式</h4>
-                            ${Object.entries(hasDetails.businessModel).slice(0, 3).map(([key, value]) =>
-                                `<div style="margin: 8px 0; line-height: 1.6;"><strong>${key}:</strong> ${value}</div>`
-                            ).join('')}
-                        </div>
-                        ` : ''}
-                        ` : `
-                        <div class="description">
-                            <strong>💡 核心价值:</strong> ${item.analysis.coreValue}<br><br>
-                            <strong>🎯 目标用户:</strong> ${item.analysis.targetUsers}<br><br>
-                            <strong>⚡ 竞争优势:</strong><br>
-                            ${item.analysis.advantages.map(a => `• ${a}`).join('<br>')}
-                        </div>
-                        `}
-                    </div>
-                    <button class="toggle-btn" onclick="toggleContent('inspiration-${index}', this)">查看详情 ▼</button>
-                </div>
-            `}).join('');
+            container.innerHTML = inspirations.map(function(item, index) {
+                var research = item.detailedResearch;
+                var html = '<div class="project-item" onclick="toggleCard(this)" style="cursor: pointer;">';
+                html += '<div style="font-size: 48px; margin-bottom: 10px;">' + item.icon + '</div>';
+                html += '<div class="project-name">' + escHTML(item.name) + '</div>';
+                html += '<div class="description">' + escHTML(item.tagline) + '</div>';
+                html += '<div class="stats">';
+                html += '<span class="stat-badge">🔥 热度: ' + item.score + '</span>';
+                html += '<span class="stat-badge">💬 Reddit: ' + escHTML(item.sources.reddit) + '</span>';
+                html += '<span class="stat-badge">🐦 Twitter: ' + escHTML(item.sources.twitter) + '</span>';
+                html += '</div>';
+                html += '<div class="item-content" id="inspiration-' + index + '">';
+                if (research) {
+                    html += buildResearchHTML(research, 'insp-' + index);
+                } else if (item.completeResearch) {
+                    var cr = item.completeResearch;
+                    html += '<div style="padding: 15px; background: #f7fafc; border-radius: 8px; margin: 10px 0; text-align: left;">';
+                    html += '<h4 style="color: #667eea; margin-bottom: 10px;">📊 市场机会</h4>';
+                    html += '<div style="margin: 8px 0; line-height: 1.6;">' + escHTML(cr.marketOpportunity.size) + '</div>';
+                    html += '</div>';
+                }
+                html += '</div>';
+                html += '<div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>';
+                html += '</div>';
+                return html;
+            }).join('');
+        }
+
+        function formatAnswer(text) {
+            if (!text) return '';
+            var safe = escHTML(text);
+            var lines = safe.split('\n');
+            var html = '';
+            var inList = false;
+
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i].trim();
+                if (!line) {
+                    if (inList) { html += '</div>'; inList = false; }
+                    continue;
+                }
+                // Numbered items: 1. 2. etc
+                var numMatch = line.match(/^(\d+)\.\s+(.+)/);
+                // Bullet items: ● or •
+                var bulletMatch = !numMatch && line.match(/^[●•]\s*(.+)/);
+
+                if (numMatch) {
+                    if (!inList) { html += '<div style="margin: 12px 0 12px 8px;">'; inList = true; }
+                    html += '<div style="display: flex; gap: 10px; margin: 8px 0; padding: 12px 16px; background: white; border-radius: 10px; box-shadow: 0 1px 4px rgba(102,126,234,0.08);">';
+                    html += '<span style="color: #667eea; font-weight: 800; font-size: 16px; flex-shrink: 0;">' + numMatch[1] + '.</span>';
+                    html += '<span style="line-height: 1.7;">' + formatInline(numMatch[2]) + '</span>';
+                    html += '</div>';
+                } else if (bulletMatch) {
+                    if (!inList) { html += '<div style="margin: 12px 0 12px 8px;">'; inList = true; }
+                    html += '<div style="display: flex; gap: 8px; margin: 6px 0; padding: 8px 14px; background: rgba(102,126,234,0.05); border-radius: 8px; border-left: 3px solid #667eea;">';
+                    html += '<span style="line-height: 1.7;">' + formatInline(bulletMatch[1]) + '</span>';
+                    html += '</div>';
+                } else {
+                    if (inList) { html += '</div>'; inList = false; }
+                    // Check if it looks like a section header (short line ending with :)
+                    if (line.length < 40 && line.endsWith(':')) {
+                        html += '<div style="margin: 16px 0 8px 0; font-weight: 700; color: #4a5568; font-size: 15px; border-bottom: 2px solid rgba(102,126,234,0.15); padding-bottom: 6px;">' + formatInline(line) + '</div>';
+                    } else if (line.length < 60 && (line.endsWith(':') || line.endsWith('：'))) {
+                        html += '<div style="margin: 16px 0 8px 0; font-weight: 700; color: #4a5568; font-size: 15px; border-bottom: 2px solid rgba(102,126,234,0.15); padding-bottom: 6px;">' + formatInline(line) + '</div>';
+                    } else {
+                        // Regular paragraph - check if it's a lead/highlight line
+                        var isLead = (i === 0 || (i <= 2 && lines.slice(0, i).every(function(l) { return !l.trim(); })));
+                        if (isLead) {
+                            html += '<div style="margin: 0 0 14px 0; padding: 14px 18px; background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.08)); border-radius: 10px; font-weight: 600; color: #2d3748; line-height: 1.8; font-size: 15px;">' + formatInline(line) + '</div>';
+                        } else {
+                            html += '<div style="margin: 8px 0; line-height: 1.8; color: #4a5568;">' + formatInline(line) + '</div>';
+                        }
+                    }
+                }
+            }
+            if (inList) html += '</div>';
+            return html;
+        }
+
+        function formatInline(text) {
+            // Bold: 「...」 or **...**
+            text = text.replace(/「([^」]+)」/g, '<strong style="color: #667eea;">「$1」</strong>');
+            text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            // Highlight key metrics: $XXX, XX%
+            text = text.replace(/(\$[\d,.]+[BMKbmk]?)/g, '<span style="color: #667eea; font-weight: 700;">$1</span>');
+            text = text.replace(/(\d+(?:\.\d+)?%)/g, '<span style="color: #667eea; font-weight: 700;">$1</span>');
+            // Arrow
+            text = text.replace(/(→)/g, '<span style="color: #667eea; margin: 0 2px;">→</span>');
+            return text;
         }
 
         function renderInsights(insights) {
             const container = document.getElementById('insights-content');
-            container.innerHTML = insights.map((item, index) => `
-                <div class="insight-item" onclick="toggleInsight(this)">
-                    <div class="qa-question">Q${index + 1}: ${item.question}</div>
-                    <div class="qa-answer">${item.answer}</div>
-                </div>
-            `).join('');
+            container.innerHTML = insights.map(function(item, index) {
+                var html = '<div class="insight-item" onclick="toggleInsight(this)">';
+                html += '<div class="qa-question">Q' + (index + 1) + ': ' + escHTML(item.question) + '</div>';
+                html += '<div class="qa-answer">' + formatAnswer(item.answer) + '</div>';
+                html += '</div>';
+                return html;
+            }).join('');
         }
 
         function toggleContent(id, btn) {
             const content = document.getElementById(id);
             content.classList.toggle('expanded');
-            btn.textContent = content.classList.contains('expanded') ? '收起 ▲' : '查看详情 ▼';
+            if (btn && btn.textContent) {
+                btn.textContent = content.classList.contains('expanded') ? '收起 ▲' : '查看完整调研 ▼';
+            }
+        }
+
+        function toggleCard(el) {
+            var content = el.querySelector('.item-content');
+            if (!content) return;
+            content.classList.toggle('expanded');
+            var hint = el.querySelector('.card-toggle-hint');
+            if (hint) hint.textContent = content.classList.contains('expanded') ? '点击收起 ▲' : '点击展开 ▼';
         }
 
         function toggleInsight(element) {
@@ -1094,6 +1544,528 @@
 
         // 页面加载时获取数据
         loadData();
+
+        // ============================================
+        // 🆕 新增功能: 搜索和过滤
+        // ============================================
+        function initSearch() {
+            const searchInput = document.getElementById('search-input');
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                filterContent(query);
+            });
+        }
+
+        function filterContent(query) {
+            if (!query) {
+                // 显示所有内容
+                document.querySelectorAll('.project-item, .inspiration-item, .qa-item').forEach(item => {
+                    item.style.display = 'block';
+                });
+                return;
+            }
+
+            // 过滤内容
+            document.querySelectorAll('.project-item, .inspiration-item, .qa-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        // ============================================
+        // 🆕 新增功能: 返回顶部按钮
+        // ============================================
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (!backToTopBtn) return;
+
+            // 滚动时显示/隐藏按钮
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            // 点击返回顶部
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // ============================================
+        // 🆕 新增功能: 键盘导航
+        // ============================================
+        function initKeyboardNav() {
+            document.addEventListener('keydown', (e) => {
+                // Ctrl/Cmd + K 打开搜索
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    const searchInput = document.getElementById('search-input');
+                    if (searchInput) {
+                        searchInput.focus();
+                    }
+                }
+
+                // ESC 关闭搜索
+                if (e.key === 'Escape') {
+                    const searchInput = document.getElementById('search-input');
+                    if (searchInput && document.activeElement === searchInput) {
+                        searchInput.blur();
+                        searchInput.value = '';
+                        filterContent('');
+                    }
+                }
+            });
+        }
+
+        // ============================================
+        // 🆕 新增功能: 性能监控
+        // ============================================
+        function initPerformanceMonitoring() {
+            if ('performance' in window && 'PerformanceObserver' in window) {
+                // 监控 Largest Contentful Paint (LCP)
+                try {
+                    const observer = new PerformanceObserver((list) => {
+                        const entries = list.getEntries();
+                        const lastEntry = entries[entries.length - 1];
+                        console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
+                    });
+                    observer.observe({ entryTypes: ['largest-contentful-paint'] });
+                } catch (e) {
+                    // 浏览器不支持
+                }
+            }
+        }
+
+        // ============================================
+        // 🆕 新增功能: 懒加载图片
+        // ============================================
+        function initLazyLoad() {
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                            }
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        }
+
+        // ============================================
+        // 🆕 新增功能: 错误处理
+        // ============================================
+        window.addEventListener('error', (e) => {
+            console.error('页面错误:', e.error);
+            // 可以在这里添加错误上报逻辑
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('未处理的 Promise 拒绝:', e.reason);
+        });
+
+        // ============================================
+        // 🆕 新增功能: 初始化所有功能
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            initSearch();
+            initBackToTop();
+            initKeyboardNav();
+            initPerformanceMonitoring();
+            initLazyLoad();
+
+            // 添加加载完成标记
+            document.body.classList.add('loaded');
+
+            // 打印性能信息
+            if (window.performance && window.performance.timing) {
+                const perfData = window.performance.timing;
+                const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                console.log('页面加载时间:', pageLoadTime + 'ms');
+            }
+        });
+
+        // ============================================
+        // 🆕 新增功能: Service Worker (PWA 支持)
+        // ============================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // 暂时禁用 SW，避免缓存问题
+                // navigator.serviceWorker.register('/sw.js').then(reg => {
+                //     console.log('Service Worker 注册成功:', reg);
+                // }).catch(err => {
+                //     console.log('Service Worker 注册失败:', err);
+                // });
+            });
+        }
     </script>
+
+    <!-- 🆕 返回顶部按钮 -->
+    <button id="back-to-top"
+            aria-label="返回顶部"
+            title="返回顶部 (快捷键: Home)"
+            style="
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 9998;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">
+        ↑
+    </button>
+
+    <style>
+        /* 返回顶部按钮可见状态 */
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        #back-to-top:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* 加载完成后的动画 */
+        body.loaded .card {
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 搜索框样式 - 升级版 */
+        #search-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                0 4px 16px rgba(102, 126, 234, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 16px 50px 16px 24px;
+            font-size: 16px;
+            border: 2px solid #e5e9f5;
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.05);
+        }
+
+        #search-input:focus {
+            border-color: #667eea;
+            box-shadow:
+                0 0 0 4px rgba(102, 126, 234, 0.15),
+                0 4px 16px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        #search-input::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* 键盘提示 - 升级版 */
+        .keyboard-hint {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #667eea;
+            padding: 4px 10px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e8ebf5 100%);
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: 700;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+
+            .keyboard-hint {
+                display: none;
+            }
+        }
+
+        /* 打印样式 */
+        @media print {
+            #back-to-top,
+            #search-container,
+            .scroll-progress {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .card {
+                break-inside: avoid;
+            }
+        }
+
+        /* 高对比度模式支持 */
+        @media (prefers-contrast: high) {
+            .card {
+                border: 2px solid #000;
+            }
+
+            #search-input {
+                border-width: 3px;
+            }
+        }
+
+        /* 深色模式支持（暂时注释，可根据需要启用） */
+        /* @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            }
+
+            .card {
+                background: rgba(45, 55, 72, 0.95);
+                color: #e2e8f0;
+            }
+        } */
+
+        /* ============================================ */
+        /* 🆕 额外的微交互和动画效果 */
+        /* ============================================ */
+
+        /* 页面加载完成动画 */
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .container {
+            animation: pageLoad 0.8s var(--ease-smooth) forwards;
+        }
+
+        /* 鼠标跟随光效 */
+        .card::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        /* 数字滚动动画 */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-badge {
+            animation: countUp 0.5s var(--ease-smooth) backwards;
+        }
+
+        .stat-badge:nth-child(1) { animation-delay: 0.1s; }
+        .stat-badge:nth-child(2) { animation-delay: 0.2s; }
+        .stat-badge:nth-child(3) { animation-delay: 0.3s; }
+
+        /* 标签呼吸效果 */
+        @keyframes breathe {
+            0%, 100% { box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+        }
+
+        .tech-tag {
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        /* 卡片图标脉冲 */
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .card-icon {
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        /* 项目卡片边框动画 */
+        .project-item {
+            background-image: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* 悬停时标题颜色变化 */
+        .project-name {
+            transition: all 0.4s var(--ease-smooth);
+        }
+
+        .project-item:hover .project-name {
+            background: linear-gradient(120deg, #667eea 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transform: translateX(5px);
+        }
+
+        /* 洞察卡片光效 */
+        .insight-item {
+            position: relative;
+            background-image:
+                linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+        }
+
+        .insight-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .insight-item:hover::after {
+            left: 100%;
+        }
+
+        /* 按钮点击波纹增强 */
+        @keyframes rippleEffect {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* 滚动指示器 */
+        @keyframes scrollHint {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(10px); opacity: 0.5; }
+        }
+
+        /* 加载骨架屏动画 */
+        @keyframes skeleton {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .loading {
+            background: linear-gradient(90deg,
+                #f0f0f0 25%,
+                #e0e0e0 50%,
+                #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton 1.5s ease-in-out infinite;
+        }
+
+        /* 减少动画（针对有晕眩倾向的用户） */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus 可见性改进（键盘导航） */
+        *:focus-visible {
+            outline: 3px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #ffd700;
+            outline-offset: 3px;
+        }
+    </style>
+
 </body>
 </html>
