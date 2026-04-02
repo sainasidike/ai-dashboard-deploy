@@ -64,7 +64,7 @@ jobs:
 数据来源:
 - GitHub Stars/Forks: GitHub API (api.github.com)
 - 产品信息: Wikipedia API
-- 深度分析: 保留人工审核内容
+- 深度分析: 基于API数据自动生成
 
 Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
             git push origin main

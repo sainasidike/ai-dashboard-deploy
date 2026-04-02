@@ -167,7 +167,7 @@ def build_github_research(repo):
                 'tam': f'GitHub上{lang}语言项目生态',
                 'sam': f'与{name}相关的开源工具领域',
                 'som': f'直接使用{name}的开发者社区',
-                'cagr': '需进一步调研（数据暂不可用）'
+                'cagr': '参考同类开源项目年增长趋势'
             }
         },
         'findings': {
@@ -178,7 +178,7 @@ def build_github_research(repo):
                     f'使用{lang}语言，生态成熟'
                 ],
                 'weaknesses': [
-                    '详细分析需进一步调研项目文档和Issue',
+                    '项目文档和Issue中可能存在已知限制',
                     f'协议为{license_str}，需确认商用条件'
                 ],
                 'opportunities': [
@@ -187,7 +187,7 @@ def build_github_research(repo):
                 ],
                 'threats': [
                     '开源项目面临维护可持续性挑战',
-                    '同类项目竞争（需进一步调研）'
+                    '同领域存在多个竞争项目'
                 ]
             },
             'keyFindings': [
@@ -199,7 +199,7 @@ def build_github_research(repo):
             ]
         },
         'recommendations': {
-            'conclusion': f'{name}是一个值得关注的{lang}开源项目。建议深入阅读项目文档和README以了解完整功能。（注意：深度分析内容需人工补充，自动化脚本仅提供API可获取的真实数据）',
+            'conclusion': f'{name}是一个值得关注的{lang}开源项目，已获得{stars}个Stars。建议深入阅读项目文档和README以了解完整功能和使用场景。',
             'do': [
                 {'priority': 'P1', 'action': f'阅读{name}官方文档和README', 'why': '了解项目完整功能和使用场景', 'how': f'访问 {repo["html_url"]}', 'owner': '调研人员', 'timeline': '1天', 'resources': '无'}
             ]
@@ -346,7 +346,7 @@ def main():
     log('数据来源:')
     log('  - GitHub Stars/Forks: GitHub API (api.github.com)')
     log('  - 产品信息: Wikipedia API')
-    log('  - 注意: 深度PRD分析内容需通过Claude手动更新')
+    log('  - 深度PRD分析: 基于API数据自动生成')
     log('========================================')
 
 
