@@ -1,6 +1,6 @@
 # AI Dashboard 项目文档
 
-> 最后更新: 2026-04-02 | 版本: v2.0
+> 最后更新: 2026-04-02 | 版本: v2.2
 
 ---
 
@@ -25,11 +25,11 @@
 - 基础信息：名称、作者、Stars、Forks、语言、URL
 - `detailedResearch`：完整6模块PRD分析
 
-**当前收录项目**：
-| 项目 | 作者 | Stars（实际） | 说明 |
-|------|------|---------------|------|
-| ai-toolkit | ostris | 10,033 | 开源AI扩散模型微调训练工具集 |
-| llm-course | mlabonne | 77,665 | LLM学习路线图+Colab Notebooks |
+**当前收录项目**（2026-04-02 GitHub API 查询）：
+| 项目 | 作者 | Stars | 说明 |
+|------|------|-------|------|
+| autoresearch | karpathy | 63,646 | AI agents 自动化研究（单GPU训练） |
+| paperclip | paperclipai | 44,079 | 零人类公司的开源编排框架 |
 
 ### 2.2 热门AI产品（AI Products）
 
@@ -504,7 +504,74 @@ curl -s "https://en.wikipedia.org/w/api.php?action=query&titles={title}&prop=ext
 curl -s "https://r.jina.ai/https://{product-url}"
 ```
 
+### 13.4 产品调研内容规范（强制性要求）
+
+**所有板块（GitHub Trending / AI Products / Inspiration Library）的产品调研必须遵循以下规范。无例外。**
+
+#### 数据来源追溯
+
+每个产品/项目的每一项数据都必须标注来源：
+
+| 数据类型 | 必须来源 | 标注格式 |
+|----------|----------|----------|
+| GitHub Stars/Forks/Issues | GitHub API 实时查询 | `（来源: GitHub API, YYYY-MM-DD）` |
+| 产品功能/特性 | Wikipedia 词条或产品官网 | `（来源: Wikipedia XX词条）` |
+| 公司融资/估值 | Wikipedia / Crunchbase / 权威媒体 | `（来源: Wikipedia History 章节）` |
+| 产品定价 | 产品官网 / Wikipedia | `（来源: 产品官网 / Wikipedia）` |
+| 市场规模 (TAM/SAM/SOM) | 行业报告或标注「估算」 | `（行业估算，非精确数据）` |
+| 用户画像/Quote | 标注「虚构场景」 | `（虚构场景）引用文字` |
+| 产品时间线/里程碑 | Wikipedia 或官方公告 | `（来源: Wikipedia XX章节）` |
+| 争议/诉讼 | Wikipedia / 权威媒体 | `（来源: Wikipedia Legal challenges 章节）` |
+
+#### detailedResearch 内容要求
+
+**GitHub Trending 项目**：
+- Stars/Forks/Language/Created/License 必须来自 GitHub API
+- 描述使用 API 返回的原始 description
+- SWOT 分析中引用具体数字（如 "63,646 Stars 证明社区认可度高"）
+- 竞品对比使用同时期 GitHub API 搜索到的同类项目数据
+
+**AI Products（真实产品）**：
+- 完整 6 模块 PRD（researchBackground → marketEnvironment → userInsights → competitorAnalysis → findings → recommendations）
+- 产品功能和历史时间线必须来自 Wikipedia 或官方来源
+- 融资数据必须标注每轮金额、投资方、估值（来源: Wikipedia History 章节）
+- 定价策略必须来自产品官网或 Wikipedia
+- 用户 Quote 必须标注为「虚构场景」
+- 争议/诉讼/负面信息不得隐瞒
+
+**Inspiration Library（概念性产品）**：
+- 明确标注为「概念性调研」
+- 市场数据标注「行业估算」
+- 用户画像标注「虚构场景」
+- 行业背景引用 Wikipedia 或权威来源
+
+#### 引用来源展示（References 板块）
+
+页面底部「数据来源与引用」板块自动汇总所有来源，格式：
+```
+编号  描述文字, 来源名称(可点击链接)  日期
+1     autoresearch Stars/Forks 数据, GitHub API  2026-04-02
+2     NotebookLM 产品功能/历史, Wikipedia (NotebookLM词条)  2026-04-02
+...
+```
+
+所有来源数据存储在 data.json 的以下字段中：
+- `githubTrending[].sources` — GitHub 项目来源信息
+- `aiProducts[].dataSources` — AI 产品来源数组
+- `inspirationLibrary[].dataSources` — 灵感库来源数组
+- `insights[].source` — 洞察 Q&A 来源说明
+
+#### 禁止使用的话术
+
+以下话术禁止出现在任何产品调研内容中：
+- ❌「需人工补充」「需手动更新」「需进一步调研」
+- ❌「自动化脚本仅提供API可获取的真实数据」
+- ❌「深度分析内容需人工审核」
+- ❌ 任何暗示内容不完整或需要人工介入的免责话术
+
+如果某项数据确实无法获取，使用具体的替代描述（如「参考同类项目年增长趋势」而非「需进一步调研」）。
+
 ---
 
-**文档版本**: v2.1
+**文档版本**: v2.2
 **适用范围**: AI Dashboard 全部开发与维护
