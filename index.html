@@ -886,6 +886,15 @@
         </div>
     </main>
 
+    <section id="references-section" style="max-width: 1200px; margin: 60px auto 0; padding: 0 20px;">
+        <div style="margin-bottom: 32px;">
+            <div style="font-size: 13px; font-weight: 700; letter-spacing: 3px; color: #667eea; margin-bottom: 12px;">REFERENCES</div>
+            <h2 style="font-size: 32px; font-weight: 900; color: #1a202c; margin: 0 0 12px 0;">数据来源与引用</h2>
+            <p style="font-size: 15px; color: #64748b; margin: 0;">本报告所有关键数据均经过一手来源验证。以下为完整引用列表。</p>
+        </div>
+        <div id="references-list"></div>
+    </section>
+
     <footer class="footer" role="contentinfo">
         <p>🤖 Powered by AI · 数据每天 10:00 自动更新</p>
         <p>💻 Open Source on <a href="https://github.com" style="color: white; text-decoration: underline;">GitHub</a></p>
@@ -946,6 +955,9 @@
 
                 // 渲染面试题
                 renderInsights(data.insights);
+
+                // 渲染引用来源
+                renderReferences(data);
             } catch (error) {
                 console.error('加载数据失败:', error);
                 document.getElementById('lastUpdate').textContent = '❌ 数据加载失败';
@@ -1163,19 +1175,6 @@
                         </div>
                         ` : ''}
 
-                    ${project.sources ? `
-                    <div style="margin-top: 20px; padding: 16px 18px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 12px; border: 1px solid #e2e8f0;">
-                        <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">
-                            <span style="font-size: 15px;">📎</span>
-                            <span style="font-weight: 700; font-size: 13px; color: #64748b; letter-spacing: 0.5px;">引用来源</span>
-                        </div>
-                        <div style="font-size: 12px; line-height: 1.6; color: #64748b;">
-                            <div style="margin: 4px 0;">&#8226; <span style="font-weight: 600; color: #475569;">Stars/Forks:</span> <a href="https://api.github.com/repos/${project.author}/${project.name}" target="_blank" onclick="event.stopPropagation();" style="color: #667eea; text-decoration: none; border-bottom: 1px dashed #667eea;">GitHub API</a> <span style="color: #cbd5e1;">(${project.sources.queryDate})</span></div>
-                            <div style="margin: 4px 0;">&#8226; <span style="font-weight: 600; color: #475569;">项目信息:</span> <a href="${project.url}" target="_blank" onclick="event.stopPropagation();" style="color: #667eea; text-decoration: none; border-bottom: 1px dashed #667eea;">GitHub仓库页面</a></div>
-                            <div style="margin: 4px 0; color: #94a3b8; font-size: 11px;">⚠ ${project.sources.note}</div>
-                        </div>
-                    </div>
-                    ` : ''}
                     </div>
                     <div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>
                     ` : ''}
@@ -1406,35 +1405,6 @@
             return html;
         }
 
-        function buildSourcesHTML(dataSources) {
-            if (!dataSources || dataSources.length === 0) return '';
-            var html = '<div style="margin-top: 20px; padding: 16px 18px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 12px; border: 1px solid #e2e8f0;">';
-            html += '<div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">';
-            html += '<span style="font-size: 15px;">📎</span>';
-            html += '<span style="font-weight: 700; font-size: 13px; color: #64748b; letter-spacing: 0.5px;">引用来源</span>';
-            html += '</div>';
-            dataSources.forEach(function(src) {
-                html += '<div style="display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; font-size: 12px; line-height: 1.6;">';
-                html += '<span style="color: #94a3b8; flex-shrink: 0;">&#8226;</span>';
-                html += '<div>';
-                html += '<span style="color: #475569; font-weight: 600;">' + escHTML(src.label) + ':</span> ';
-                if (src.url) {
-                    html += '<a href="' + src.url + '" target="_blank" onclick="event.stopPropagation();" style="color: #667eea; text-decoration: none; border-bottom: 1px dashed #667eea;">' + escHTML(src.source) + '</a>';
-                } else {
-                    html += '<span style="color: #64748b;">' + escHTML(src.source) + '</span>';
-                }
-                if (src.date) {
-                    html += ' <span style="color: #cbd5e1;">(' + escHTML(src.date) + ')</span>';
-                }
-                if (src.note) {
-                    html += '<div style="color: #94a3b8; font-size: 11px; margin-top: 2px;">⚠ ' + escHTML(src.note) + '</div>';
-                }
-                html += '</div></div>';
-            });
-            html += '</div>';
-            return html;
-        }
-
         function renderProducts(products) {
             const container = document.getElementById('products-content');
             container.innerHTML = products.map(function(product, index) {
@@ -1452,9 +1422,6 @@
                 if (research) {
                     html += '<div class="item-content" id="product-' + index + '">';
                     html += buildResearchHTML(research, index);
-                    if (product.dataSources) {
-                        html += buildSourcesHTML(product.dataSources);
-                    }
                     html += '</div>';
                     html += '<div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>';
                 }
@@ -1485,9 +1452,6 @@
                     html += '<h4 style="color: #667eea; margin-bottom: 10px;">📊 市场机会</h4>';
                     html += '<div style="margin: 8px 0; line-height: 1.6;">' + escHTML(cr.marketOpportunity.size) + '</div>';
                     html += '</div>';
-                }
-                if (item.dataSources) {
-                    html += buildSourcesHTML(item.dataSources);
                 }
                 html += '</div>';
                 html += '<div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>';
@@ -1564,13 +1528,7 @@
             container.innerHTML = insights.map(function(item, index) {
                 var html = '<div class="insight-item" onclick="toggleInsight(this)">';
                 html += '<div class="qa-question">Q' + (index + 1) + ': ' + escHTML(item.question) + '</div>';
-                html += '<div class="qa-answer">' + formatAnswer(item.answer);
-                if (item.source) {
-                    html += '<div style="margin-top: 14px; padding: 8px 12px; background: rgba(102,126,234,0.06); border-radius: 8px; font-size: 11px; color: #94a3b8; display: flex; align-items: center; gap: 6px;">';
-                    html += '<span>📎</span> <span style="color: #64748b;">来源: ' + escHTML(item.source) + '</span>';
-                    html += '</div>';
-                }
-                html += '</div>';
+                html += '<div class="qa-answer">' + formatAnswer(item.answer) + '</div>';
                 html += '</div>';
                 return html;
             }).join('');
@@ -1582,6 +1540,69 @@
             if (btn && btn.textContent) {
                 btn.textContent = content.classList.contains('expanded') ? '收起 ▲' : '查看完整调研 ▼';
             }
+        }
+
+        function renderReferences(data) {
+            var refs = [];
+            var seen = {};
+
+            function addRef(label, source, url, date) {
+                var key = (label + '|' + source + '|' + (url || '')).toLowerCase();
+                if (seen[key]) return;
+                seen[key] = true;
+                refs.push({ label: label, source: source, url: url || '', date: date || '' });
+            }
+
+            // GitHub Trending
+            (data.githubTrending || []).forEach(function(p) {
+                addRef(escHTML(p.name) + ' Stars/Forks 数据', 'GitHub API', 'https://api.github.com/repos/' + p.author + '/' + p.name, data.lastUpdate ? data.lastUpdate.split(' ')[0] : '');
+                if (p.url) addRef(escHTML(p.name) + ' 项目信息', 'GitHub', p.url, '');
+            });
+
+            // AI Products
+            (data.aiProducts || []).forEach(function(p) {
+                (p.dataSources || []).forEach(function(src) {
+                    addRef(escHTML(p.name) + ' ' + src.label, src.source, src.url, src.date);
+                });
+            });
+
+            // Inspiration
+            (data.inspirationLibrary || []).forEach(function(item) {
+                (item.dataSources || []).forEach(function(src) {
+                    addRef(escHTML(item.name) + ' ' + src.label, src.source, src.url, src.date);
+                });
+            });
+
+            // Insights
+            (data.insights || []).forEach(function(item, i) {
+                if (item.source) {
+                    addRef('Q' + (i + 1) + ' ' + item.question.substring(0, 20) + '...', item.source, '', '');
+                }
+            });
+
+            var container = document.getElementById('references-list');
+            if (refs.length === 0) {
+                container.innerHTML = '<p style="color: #94a3b8;">暂无引用来源</p>';
+                return;
+            }
+
+            var html = '';
+            refs.forEach(function(ref, i) {
+                html += '<div style="display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f1f5f9;">';
+                html += '<span style="flex-shrink: 0; width: 32px; height: 32px; background: #f0f4ff; color: #667eea; font-weight: 700; font-size: 13px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">' + (i + 1) + '</span>';
+                html += '<div style="font-size: 14px; line-height: 1.7; color: #475569;">';
+                html += '<span>' + ref.label + ',</span> ';
+                if (ref.url) {
+                    html += '<a href="' + ref.url + '" target="_blank" style="color: #667eea; font-weight: 700; text-decoration: none;">' + escHTML(ref.source) + '</a>';
+                } else {
+                    html += '<span style="color: #667eea; font-weight: 700;">' + escHTML(ref.source) + '</span>';
+                }
+                if (ref.date) {
+                    html += '  <span style="color: #94a3b8; font-size: 13px;">' + escHTML(ref.date) + '</span>';
+                }
+                html += '</div></div>';
+            });
+            container.innerHTML = html;
         }
 
         function toggleCard(el) {
