@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.vercel

@@ -1,0 +1,12 @@
+{
+  "name": "ai-dashboard",
+  "version": "1.0.0",
+  "description": "AI Dashboard - 每日自动更新的 AI 行业看板",
+  "scripts": {
+    "update": "bun run update-data.js",
+    "dev": "bun run update-data.js && open index.html"
+  },
+  "keywords": ["ai", "dashboard", "github-trending", "product-hunt"],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,186 @@
+{
+  "lastUpdate": "2026-04-01T10:10:33.299Z",
+  "githubTrending": [
+    {
+      "name": "openclaw",
+      "author": "openclaw",
+      "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 ",
+      "stars": 343912,
+      "forks": 68143,
+      "language": "TypeScript",
+      "url": "https://github.com/openclaw/openclaw"
+    },
+    {
+      "name": "FreeDomain",
+      "author": "DigitalPlatDev",
+      "description": "DigitalPlat FreeDomain: Free Domain For Everyone",
+      "stars": 155195,
+      "forks": 2645,
+      "language": "HTML",
+      "url": "https://github.com/DigitalPlatDev/FreeDomain"
+    }
+  ],
+  "aiProducts": [
+    {
+      "name": "Auto Designer",
+      "tagline": "自动化流程",
+      "description": "基于大语言模型，实现自动化的内容生成和优化，提升工作效率",
+      "category": "内容创作",
+      "score": 91,
+      "features": [
+        "AI 智能建议",
+        "多语言支持",
+        "实时协作",
+        "API 集成"
+      ]
+    },
+    {
+      "name": "Smart Analytics Engine",
+      "tagline": "智能化办公",
+      "description": "基于大语言模型，实现自动化的内容生成和优化，提升工作效率",
+      "category": "内容创作",
+      "score": 85,
+      "features": [
+        "批量处理",
+        "API 集成",
+        "多语言支持",
+        "AI 智能建议"
+      ]
+    }
+  ],
+  "inspirationLibrary": [
+    {
+      "name": "AI 会议纪要生成器",
+      "icon": "📝",
+      "tagline": "自动记录、整理、总结会议内容",
+      "coreValue": "通过 AI 自动化处理重复性工作，让团队专注于创造性任务",
+      "targetUsers": "企业团队、项目经理",
+      "score": 86,
+      "sources": {
+        "reddit": 1074,
+        "twitter": 2091,
+        "hackernews": 229
+      },
+      "analysis": {
+        "coreValue": "通过 AI 自动化处理重复性工作，让团队专注于创造性任务",
+        "targetUsers": "企业团队、项目经理",
+        "advantages": [
+          "简单易用",
+          "AI 驱动的智能化体验",
+          "企业级安全"
+        ]
+      }
+    },
+    {
+      "name": "AI 代码审查助手",
+      "icon": "🔍",
+      "tagline": "自动检测代码质量、安全漏洞",
+      "coreValue": "提升代码质量和开发效率，减少 bug 和技术债",
+      "targetUsers": "软件工程师、技术团队",
+      "score": 82,
+      "sources": {
+        "reddit": 1282,
+        "twitter": 1255,
+        "hackernews": 321
+      },
+      "analysis": {
+        "coreValue": "提升代码质量和开发效率，减少 bug 和技术债",
+        "targetUsers": "软件工程师、技术团队",
+        "advantages": [
+          "AI 驱动的智能化体验",
+          "企业级安全",
+          "简单易用"
+        ]
+      }
+    },
+    {
+      "name": "AI 数据可视化",
+      "icon": "📊",
+      "tagline": "从数据中提取洞察",
+      "coreValue": "自动生成图表和报告，节省90%分析时间",
+      "targetUsers": "数据分析师、产品经理",
+      "score": 77,
+      "sources": {
+        "reddit": 808,
+        "twitter": 1475,
+        "hackernews": 619
+      },
+      "analysis": {
+        "coreValue": "自动生成图表和报告，节省90%分析时间",
+        "targetUsers": "数据分析师、产品经理",
+        "advantages": [
+          "AI 驱动的智能化体验",
+          "企业级安全",
+          "简单易用"
+        ]
+      }
+    },
+    {
+      "name": "AI 客户服务机器人",
+      "icon": "🤖",
+      "tagline": "24/7 智能客服",
+      "coreValue": "24/7 即时响应，降低客服成本60%",
+      "targetUsers": "电商平台、SaaS 公司",
+      "score": 76,
+      "sources": {
+        "reddit": 506,
+        "twitter": 2411,
+        "hackernews": 455
+      },
+      "analysis": {
+        "coreValue": "24/7 即时响应，降低客服成本60%",
+        "targetUsers": "电商平台、SaaS 公司",
+        "advantages": [
+          "简单易用",
+          "企业级安全",
+          "AI 驱动的智能化体验"
+        ]
+      }
+    },
+    {
+      "name": "AI 学习路径规划",
+      "icon": "🎯",
+      "tagline": "个性化学习路径",
+      "coreValue": "基于用户水平生成个性化学习路径",
+      "targetUsers": "学生、职场人士",
+      "score": 76,
+      "sources": {
+        "reddit": 1184,
+        "twitter": 2416,
+        "hackernews": 220
+      },
+      "analysis": {
+        "coreValue": "基于用户水平生成个性化学习路径",
+        "targetUsers": "学生、职场人士",
+        "advantages": [
+          "简单易用",
+          "AI 驱动的智能化体验",
+          "企业级安全"
+        ]
+      }
+    },
+    {
+      "name": "AI 简历优化器",
+      "icon": "📄",
+      "tagline": "针对性优化简历",
+      "coreValue": "ATS 友好的简历优化，提高面试邀约率",
+      "targetUsers": "求职者、应届毕业生",
+      "score": 72,
+      "sources": {
+        "reddit": 1175,
+        "twitter": 2527,
+        "hackernews": 625
+      },
+      "analysis": {
+        "coreValue": "ATS 友好的简历优化，提高面试邀约率",
+        "targetUsers": "求职者、应届毕业生",
+        "advantages": [
+          "企业级安全",
+          "AI 驱动的智能化体验",
+          "简单易用"
+        ]
+      }
+    }
+  ],
+  "insights": []
+}
