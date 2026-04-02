@@ -1163,6 +1163,19 @@
                         </div>
                         ` : ''}
 
+                    ${project.sources ? `
+                    <div style="margin-top: 20px; padding: 16px 18px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">
+                            <span style="font-size: 15px;">📎</span>
+                            <span style="font-weight: 700; font-size: 13px; color: #64748b; letter-spacing: 0.5px;">引用来源</span>
+                        </div>
+                        <div style="font-size: 12px; line-height: 1.6; color: #64748b;">
+                            <div style="margin: 4px 0;">&#8226; <span style="font-weight: 600; color: #475569;">Stars/Forks:</span> <a href="https://api.github.com/repos/${project.author}/${project.name}" target="_blank" onclick="event.stopPropagation();" style="color: #667eea; text-decoration: none; border-bottom: 1px dashed #667eea;">GitHub API</a> <span style="color: #cbd5e1;">(${project.sources.queryDate})</span></div>
+                            <div style="margin: 4px 0;">&#8226; <span style="font-weight: 600; color: #475569;">项目信息:</span> <a href="${project.url}" target="_blank" onclick="event.stopPropagation();" style="color: #667eea; text-decoration: none; border-bottom: 1px dashed #667eea;">GitHub仓库页面</a></div>
+                            <div style="margin: 4px 0; color: #94a3b8; font-size: 11px;">⚠ ${project.sources.note}</div>
+                        </div>
+                    </div>
+                    ` : ''}
                     </div>
                     <div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>
                     ` : ''}
@@ -1393,6 +1406,35 @@
             return html;
         }
 
+        function buildSourcesHTML(dataSources) {
+            if (!dataSources || dataSources.length === 0) return '';
+            var html = '<div style="margin-top: 20px; padding: 16px 18px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 12px; border: 1px solid #e2e8f0;">';
+            html += '<div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">';
+            html += '<span style="font-size: 15px;">📎</span>';
+            html += '<span style="font-weight: 700; font-size: 13px; color: #64748b; letter-spacing: 0.5px;">引用来源</span>';
+            html += '</div>';
+            dataSources.forEach(function(src) {
+                html += '<div style="display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; font-size: 12px; line-height: 1.6;">';
+                html += '<span style="color: #94a3b8; flex-shrink: 0;">&#8226;</span>';
+                html += '<div>';
+                html += '<span style="color: #475569; font-weight: 600;">' + escHTML(src.label) + ':</span> ';
+                if (src.url) {
+                    html += '<a href="' + src.url + '" target="_blank" onclick="event.stopPropagation();" style="color: #667eea; text-decoration: none; border-bottom: 1px dashed #667eea;">' + escHTML(src.source) + '</a>';
+                } else {
+                    html += '<span style="color: #64748b;">' + escHTML(src.source) + '</span>';
+                }
+                if (src.date) {
+                    html += ' <span style="color: #cbd5e1;">(' + escHTML(src.date) + ')</span>';
+                }
+                if (src.note) {
+                    html += '<div style="color: #94a3b8; font-size: 11px; margin-top: 2px;">⚠ ' + escHTML(src.note) + '</div>';
+                }
+                html += '</div></div>';
+            });
+            html += '</div>';
+            return html;
+        }
+
         function renderProducts(products) {
             const container = document.getElementById('products-content');
             container.innerHTML = products.map(function(product, index) {
@@ -1410,6 +1452,9 @@
                 if (research) {
                     html += '<div class="item-content" id="product-' + index + '">';
                     html += buildResearchHTML(research, index);
+                    if (product.dataSources) {
+                        html += buildSourcesHTML(product.dataSources);
+                    }
                     html += '</div>';
                     html += '<div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>';
                 }
@@ -1440,6 +1485,9 @@
                     html += '<h4 style="color: #667eea; margin-bottom: 10px;">📊 市场机会</h4>';
                     html += '<div style="margin: 8px 0; line-height: 1.6;">' + escHTML(cr.marketOpportunity.size) + '</div>';
                     html += '</div>';
+                }
+                if (item.dataSources) {
+                    html += buildSourcesHTML(item.dataSources);
                 }
                 html += '</div>';
                 html += '<div class="card-toggle-hint" style="text-align: center; color: #9ca3af; font-size: 13px; margin-top: 12px;">点击展开 ▼</div>';
@@ -1516,7 +1564,13 @@
             container.innerHTML = insights.map(function(item, index) {
                 var html = '<div class="insight-item" onclick="toggleInsight(this)">';
                 html += '<div class="qa-question">Q' + (index + 1) + ': ' + escHTML(item.question) + '</div>';
-                html += '<div class="qa-answer">' + formatAnswer(item.answer) + '</div>';
+                html += '<div class="qa-answer">' + formatAnswer(item.answer);
+                if (item.source) {
+                    html += '<div style="margin-top: 14px; padding: 8px 12px; background: rgba(102,126,234,0.06); border-radius: 8px; font-size: 11px; color: #94a3b8; display: flex; align-items: center; gap: 6px;">';
+                    html += '<span>📎</span> <span style="color: #64748b;">来源: ' + escHTML(item.source) + '</span>';
+                    html += '</div>';
+                }
+                html += '</div>';
                 html += '</div>';
                 return html;
             }).join('');
