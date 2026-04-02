@@ -1,427 +1,147 @@
 {
-  "lastUpdate": "2026-04-02 (数据已基于Wikipedia和官方来源校验)",
+  "lastUpdate": "2026-04-02 13:08:43",
   "githubTrending": [
     {
-      "name": "ai-toolkit",
-      "author": "ostris",
-      "description": "开源AI扩散模型微调训练工具集，支持Stable Diffusion和LoRA训练（The ultimate training toolkit for finetuning diffusion models）",
-      "stars": 10033,
-      "forks": 1219,
-      "language": "Python",
-      "url": "https://github.com/ostris/ai-toolkit",
+      "name": "claude-code",
+      "author": "claude-code-best",
+      "description": "原汁原昧 Claude Code 可运行,可构建版; Typescript 类型全修复; 企业级可靠性; 安全无毒, lock 文件保真, 可直接 bun i; bun run dev 启动",
+      "stars": 8533,
+      "forks": 10281,
+      "language": "TypeScript",
+      "url": "https://github.com/claude-code-best/claude-code",
       "detailedResearch": {
         "researchBackground": {
-          "why": "AI图像生成市场快速增长，企业对数据隐私、成本控制、模型定制化需求强烈",
-          "coreObjective": "验证开源AI图像工具能否在企业市场形成差异化，解决闭源工具的黑盒和高成本问题",
-          "scope": "聚焦AI图像生成开源工具，对比Midjourney/DALL-E，分析Stable Diffusion/LoRA技术栈"
+          "why": "claude-code是GitHub上近期热门的TypeScript项目，原汁原昧 Claude Code 可运行,可构建版; Typescript 类型全修复; 企业级可靠性; 安全无毒, lock 文件保真, 可直接 bun i; bun run dev 启动。项目创建于2026-03-31，已获得8533个Stars和10281个Forks（数据来源: GitHub API，实时查询）",
+          "coreObjective": "分析claude-code项目的技术定位、社区活跃度和应用价值",
+          "scope": "基于GitHub API公开数据分析，涵盖项目基本信息、技术栈、社区指标。Topics: 未标注"
         },
         "marketEnvironment": {
           "pest": {
-            "political": "GDPR和AI法案提升隐私要求，企业倾向本地部署。中国《生成式AI管理办法》要求算法备案，开源模型更易合规",
-            "economic": "全球AI图像市场$8B(2025)→$35B(2030)。企业降本需求强，开源可节省60-90% API成本。VC对AI基础设施投资$500M",
-            "social": "创作者经济爆发，独立设计师需要低成本工具。AI+人类协作被接受，但版权归属有争议",
-            "technology": "Stable Diffusion XL/FLUX性能逼近DALL-E 3。LoRA微调成熟，成本降80%。GPU成本下降推动普及"
+            "political": "开源协议: 未知",
+            "economic": "Stars: 8533 | Forks: 10281 | 语言: TypeScript（数据来源: GitHub API）",
+            "social": "项目主页: https://ccb.agent-aura.top/ | Topics: 未标注",
+            "technology": "主要语言: TypeScript | 创建日期: 2026-03-31"
           },
           "marketSize": {
-            "tam": "全球AI图像TAM $35B(2030)，包含ToC(内容创作)和ToB(企业设计)",
-            "sam": "开源AI图像SAM $7B，占20%。服务中小企业、独立创作者、开发者",
-            "som": "AI Toolkit可获SOM $200M(前3年)，2-3%市场份额。重点游戏/广告/电商",
-            "cagr": "开源AI图像CAGR 45%(2025-2030)，高于整体35%。驱动力：隐私合规+成本优势"
-          },
-          "competitiveLandscape": "闭源市场Midjourney(40%)+DALL-E(30%)双寡头垄断，企业渗透率<15%。开源市场高度分散，CR4<20%。进入壁垒中等(模型训练+社区运营)，退出壁垒低(代码可fork)"
-        },
-        "userInsights": {
-          "targetUsers": [
-            {
-              "persona": "游戏美术师Alex(28岁)",
-              "description": "游戏公司组长，月薪$5K，每天生成50-100张概念图",
-              "painPoint": "Midjourney无法训练游戏特定风格，DALL-E API成本$500/月",
-              "paymentWillingness": "愿意付$50/月支持开源，前提是节省时间>10小时/周",
-              "quote": "我需要能训练自己风格的工具，不想每次都从头描述世界观"
-            },
-            {
-              "persona": "广告创意总监Sarah(35岁)",
-              "description": "服务中小企业，年薪$80K，月预算$2K",
-              "painPoint": "Midjourney生成速度慢(排队)，客户担心创意泄露",
-              "paymentWillingness": "愿意$200/月企业服务，前提是私有部署+商用授权",
-              "quote": "客户Brief不能上传到公共平台，我们需要完全掌控数据"
-            },
-            {
-              "persona": "独立开发者Kai(24岁)",
-              "description": "年收入$40K，开发AI应用如头像生成",
-              "painPoint": "OpenAI API太贵，占收入50%，自己训练门槛高",
-              "paymentWillingness": "不付费，但会贡献代码/文档/宣传",
-              "quote": "API成本占收入50%，不可持续"
-            }
-          ],
-          "painPoints": [
-            "💰 **成本过高(Must-have)**: 企业月费$500-5000，占运营成本15-30%。中小企业无法承受",
-            "🔒 **数据隐私(Must-have for B2B)**: 客户Brief上传到Midjourney存在泄露风险。金融/医疗/政府拒绝使用",
-            "🎨 **无法定制风格(Nice-to-have)**: 品牌独特视觉风格无法精准复现。需大量Prompt迭代",
-            "⚠️ **依赖第三方(Nice-to-have)**: Midjourney中断/涨价/政策变化，企业被动承受"
-          ],
-          "decisionJourney": {
-            "awareness": "通过GitHub Trending、Reddit r/StableDiffusion、HN发现。关键词搜索'open source stable diffusion'。转化率15%",
-            "consideration": "对比Automatic1111(复杂)、ComfyUI(陡峭学习曲线)、Fooocus(功能少)。评估：易用性、功能、社区、文档、许可",
-            "purchase": "开源免费无需购买，决策是'是否投入时间学习部署'。关键：安装成功率、首次生成质量、GPU要求。转化率40%",
-            "advocacy": "用户在Reddit/Twitter分享作品，Discord帮新人，贡献代码。NPS=65。推荐率25%"
-          },
-          "keyInsights": [
-            "💡 洞察1: **成本非唯一，掌控感更重要**。80%企业强调'自主可控'>'便宜'。愿为开源付$200/月，只要数据不离开内网",
-            "💡 洞察2: **开发者驱动B2B销售**。60%企业客户'自下而上'：开发者/设计师先个人用，验证后推动采购。传统'销售驱动'失效",
-            "💡 洞察3: **社区≠产品，但驱动增长**。Discord活跃用户仅5%，但贡献80%传播。培养'核心布道者'比扩大'总用户数'更重要",
-            "💡 洞察4: **LoRA是杀手功能**。LoRA训练成本$50、2小时 vs 完整训练$1K+、72小时。这是对抗闭源巨头的关键武器"
-          ]
-        },
-        "competitorAnalysis": {
-          "direct": [
-            "**Automatic1111**: 功能最全(40%市场份额)，但界面复杂、安装困难",
-            "**ComfyUI**: 节点式工作流(15%份额)，灵活但学习门槛极高",
-            "**Fooocus**: 最简单(10%份额)，但功能有限、无LoRA训练"
-          ],
-          "indirect": [
-            "**Midjourney**: 抢占同一预算($10-30/月)，体验极佳，威胁专业性要求不高的用户",
-            "**DALL-E API**: 开发者集成替代方案，成本高但无需部署"
-          ],
-          "benchmarks": [
-            "**Cursor**: 开源模型+极致体验=成功。证明开源≠粗糙",
-            "**Blender**: 通过插件生态+企业服务盈利。社区+商业化典范"
-          ],
-          "comparisonMatrix": "AI Toolkit在易用性(4/5)、性能(5/5)、LoRA训练(5/5)上领先。弱于Automatic1111的功能完整性和社区规模。强于Fooocus的功能深度"
+            "tam": "GitHub上TypeScript语言项目生态",
+            "sam": "与claude-code相关的开源工具领域",
+            "som": "直接使用claude-code的开发者社区",
+            "cagr": "需进一步调研（数据暂不可用）"
+          }
         },
         "findings": {
           "swot": {
             "strengths": [
-              "⭐ 技术先进：集成最新FLUX，LoRA训练快50%",
-              "⭐ 易用性平衡：比A1111简单，比Fooocus强大",
-              "⭐ 性能优化：多GPU+4K图像",
-              "⭐ 模块化：易扩展和贡献"
+              "Stars 8533 表明社区认可度高（来源: GitHub API）",
+              "Forks 10281 表明有活跃的贡献者生态",
+              "使用TypeScript语言，生态成熟"
             ],
             "weaknesses": [
-              "❌ 社区小：2.8K stars vs A1111 100K+",
-              "❌ 文档不足：高级功能缺教程",
-              "❌ 无企业服务：大企业采购顾虑",
-              "❌ 插件少：50+ vs A1111 500+"
+              "详细分析需进一步调研项目文档和Issue",
+              "协议为未知，需确认商用条件"
             ],
             "opportunities": [
-              "🚀 企业市场蓝海：需要企业级开源方案",
-              "🚀 AI Agent集成：作为Agent图像模块",
-              "🚀 边缘计算：苹果M芯片本地AI",
-              "🚀 版权合规：DALL-E争议，企业倾向可控"
+              "开源项目天然具备社区驱动增长潜力",
+              "TypeScript语言开发者基数大，潜在用户广泛"
             ],
             "threats": [
-              "⚠️ 闭源进步：DALL-E 4拉开差距",
-              "⚠️ GPU门槛：$2K+ GPU限制普及",
-              "⚠️ 法律风险：训练数据版权诉讼",
-              "⚠️ 竞品模仿：A1111集成LoRA优化"
+              "开源项目面临维护可持续性挑战",
+              "同类项目竞争（需进一步调研）"
             ]
           },
           "keyFindings": [
             {
-              "title": "真正客户是企业而非个人",
-              "detail": "个人用户90%使用量、0%收入。企业10%使用量、100%收入。ToB市场ARPU $200-2000/月 vs ToC $0-20",
-              "impact": "高 - 决定商业模式和产品方向"
-            },
-            {
-              "title": "LoRA是差异化核心",
-              "detail": "85%专业用户：生成质量够用，痛点是快速训练风格。LoRA快50%是核心竞争力",
-              "impact": "高 - 影响定位和营销策略"
-            },
-            {
-              "title": "企业愿为开源+支持付费",
-              "detail": "20家企业100%愿付$200-500/月企业支持(技术支持、Bug修复、培训、SLA)",
-              "impact": "高 - 开辟可持续商业模式"
+              "title": "claude-code社区指标分析",
+              "detail": "Stars: 8533, Forks: 10281, 语言: TypeScript, 创建于2026-03-31。所有数据来源于GitHub API实时查询，确保准确性。",
+              "impact": "中 - 社区指标是项目健康度的重要参考"
             }
-          ],
-          "differentiation": {
-            "whyWinning": [
-              "✅ 技术+易用性平衡：专业用户最佳平衡点",
-              "✅ LoRA优化：可量化优势(节省时间=成本)",
-              "✅ 企业空白：率先切入ToB先发优势"
-            ],
-            "moat": [
-              "护城河1: LoRA算法优化技术壁垒",
-              "护城河2: Discord社区+模型库黏性",
-              "护城河3: 企业部署后迁移成本极高"
-            ]
-          },
-          "antiConsensus": [
-            "⚡ 反共识1: **开源应ToB非ToC**。企业才是买单者，LTV是个人100倍",
-            "⚡ 反共识2: **功能少是优势**。A1111功能多但复杂流失高。AI Toolkit克制专注，留存率70% vs 40%"
           ]
         },
         "recommendations": {
-          "conclusion": "AI Toolkit定位'专业用户的开源AI图像工具'，通过LoRA优化+企业服务，在A1111(复杂)和Midjourney(闭源)间开辟空间。战略：ToB+开源社区双轮驱动，前3年目标$10M ARR(5000企业×$2K/年)",
+          "conclusion": "claude-code是一个值得关注的TypeScript开源项目。建议深入阅读项目文档和README以了解完整功能。（注意：深度分析内容需人工补充，自动化脚本仅提供API可获取的真实数据）",
           "do": [
             {
-              "priority": "P0",
-              "action": "推出AI Toolkit Enterprise企业版",
-              "why": "企业市场是收入来源，免费开源无法支撑发展",
-              "how": "私有部署、99.5% SLA、24/7技术支持、商业许可。定价$200/月起、$2000/年企业套餐",
-              "timeline": "Q2 2026(3个月)上线MVP",
-              "resources": "开发2人月、设计0.5人月、法务$5K"
-            },
-            {
-              "priority": "P0",
-              "action": "优化LoRA训练性能",
-              "why": "核心差异化必须保持领先",
-              "how": "速度再提升30%(2小时→1.4小时)。混合精度、Gradient Checkpointing、优化器调优",
-              "timeline": "Q2 2026完成，Q3持续优化",
-              "resources": "算法工程师3人月、GPU $10K"
-            },
-            {
               "priority": "P1",
-              "action": "建立企业客户案例库",
-              "why": "B2B销售需要社会证明",
-              "how": "获得10个付费客户(游戏/广告/电商)，制作案例视频+PDF。展示ROI(节省$XX/月、提升XX%)",
-              "timeline": "Q3 2026",
-              "resources": "商务2人月、视频$5K"
+              "action": "阅读claude-code官方文档和README",
+              "why": "了解项目完整功能和使用场景",
+              "how": "访问 https://github.com/claude-code-best/claude-code",
+              "owner": "调研人员",
+              "timeline": "1天",
+              "resources": "无"
             }
-          ],
-          "dont": [
-            {
-              "avoid": "不追求GitHub star数和个人用户量",
-              "why": "个人不付费，高DAU但$0收入",
-              "alternative": "专注企业客户，100付费企业 > 10万免费个人"
-            },
-            {
-              "avoid": "不与A1111竞争功能数量",
-              "why": "功能军备竞赛陷阱，维护成本高、产品臃肿",
-              "alternative": "坚持专业工具定位，功能精不多"
-            }
-          ],
-          "validate": [
-            {
-              "hypothesis": "企业愿付$200/月",
-              "method": "MVP测试：企业版Landing Page + 7天试用 + $200/月订阅。目标：100试用中5%转化(5客户)",
-              "cost": "$5K(开发+广告)",
-              "timeline": "Q2 2026(2月)",
-              "criteria": "转化率>5%全力推进；<2%重审定价"
-            }
-          ],
-          "roadmap": {
-            "Q2_2026": {
-              "milestones": [
-                "企业版MVP",
-                "LoRA优化完成",
-                "首批10个客户"
-              ],
-              "okr": "验证ToB模式: ARR $24K(10×$200/月×12) | 转化率≥5% | NPS≥60"
-            },
-            "Q3_2026": {
-              "milestones": [
-                "案例库完成",
-                "文档体系",
-                "100个客户"
-              ],
-              "okr": "规模化获客: ARR $240K(100×$200/月×12) | MRR月增20% | 续费率≥80%"
-            },
-            "Q4_2026": {
-              "milestones": [
-                "Web版Beta",
-                "500个客户",
-                "$2M融资"
-              ],
-              "okr": "扩大覆盖: ARR $1.2M(500×$200/月×12) | Web MAU 10万 | 团队20人"
-            }
-          }
+          ]
         }
       }
     },
     {
-      "name": "llm-course",
-      "author": "mlabonne",
-      "description": "系统化的大语言模型(LLM)学习路线图，包含Colab Notebooks和学习路径（Course to get into Large Language Models with roadmaps and Colab notebooks）",
-      "stars": 77665,
-      "forks": 8985,
-      "language": "Jupyter Notebook",
-      "url": "https://github.com/mlabonne/llm-course",
+      "name": "claude-code-sourcemap",
+      "author": "ChinaSiro",
+      "description": "暂无描述",
+      "stars": 7595,
+      "forks": 13064,
+      "language": "TypeScript",
+      "url": "https://github.com/ChinaSiro/claude-code-sourcemap",
       "detailedResearch": {
         "researchBackground": {
-          "why": "AI人才缺口严重(2025年全球50万)，大学课程滞后，在线教育碎片化",
-          "coreObjective": "验证开源免费课程能否成为AI教育主流，替代高价培训班($2000-5000)和大学课程",
-          "scope": "聚焦LLM开发技能培训，对比Coursera/Udemy付费课程，分析学习效果和就业转化"
+          "why": "claude-code-sourcemap是GitHub上近期热门的TypeScript项目，暂无描述。项目创建于2026-03-31，已获得7595个Stars和13064个Forks（数据来源: GitHub API，实时查询）",
+          "coreObjective": "分析claude-code-sourcemap项目的技术定位、社区活跃度和应用价值",
+          "scope": "基于GitHub API公开数据分析，涵盖项目基本信息、技术栈、社区指标。Topics: 未标注"
         },
         "marketEnvironment": {
           "pest": {
-            "political": "各国推动AI教育普及，欧盟AI技能培训基金$500M(2025-2027)",
-            "economic": "全球在线教育$350B，AI细分$15B，CAGR 25%。AI工程师薪资$120-200K吸引转行者",
-            "social": "终身学习成共识，YouTube/GitHub成主流学习平台",
-            "technology": "Jupyter/Colab普及降低门槛。LLM API让实践变容易"
+            "political": "开源协议: 未知",
+            "economic": "Stars: 7595 | Forks: 13064 | 语言: TypeScript（数据来源: GitHub API）",
+            "social": "项目主页: https://linux.do/u/huo0 | Topics: 未标注",
+            "technology": "主要语言: TypeScript | 创建日期: 2026-03-31"
           },
           "marketSize": {
-            "tam": "全球AI技能培训TAM $15B(2025)，包含在线课程、训练营、企业培训",
-            "sam": "免费开源课程SAM $2B，占13%。服务自学者、学生",
-            "som": "LLM Course可获SOM $50M('如果收费'计算)，2.5%市场份额",
-            "cagr": "AI教育CAGR 25%，免费课程35%(成本优势)"
-          },
-          "competitiveLandscape": "付费课程(Coursera/Udemy)占70%，NPS 30-40。免费课程(YouTube/GitHub)占30%，质量参差。进入壁垒低，但'高质量+持续更新'形成护城河"
-        },
-        "userInsights": {
-          "targetUsers": [
-            {
-              "persona": "后端工程师转AI(30岁)",
-              "description": "5年Java/Python，年薪$80K，想转AI到$150K",
-              "painPoint": "缺ML基础，付费课程贵($2000)，怕学完找不到工作",
-              "paymentWillingness": "$0(免费课程)，但愿捐赠$50-100",
-              "quote": "我需要系统学习路径，不是碎片化视频"
-            },
-            {
-              "persona": "计算机专业学生(22岁)",
-              "description": "大三，预算紧张，想找AI实习",
-              "painPoint": "大学理论多实践少，不知企业需要什么",
-              "paymentWillingness": "$0，完全免费资源",
-              "quote": "学校教的跟工作需要的差太多"
-            }
-          ],
-          "painPoints": [
-            "💸 **付费课程太贵**: $2000-5000，学生和转行者负担不起",
-            "📚 **理论实践脱节**: 大学/付费课程偏理论，缺实战项目",
-            "🎯 **不知学什么**: 碎片化教程太多，缺系统学习路径",
-            "⏰ **学习时间长**: 传统课程6个月-1年，转行者等不起"
-          ],
-          "decisionJourney": {
-            "awareness": "通过GitHub Trending、Reddit r/MachineLearning、Twitter AI圈发现",
-            "consideration": "对比付费课程(Coursera $2000、Udemy $500)。看GitHub star、更新频率、用户评价",
-            "purchase": "免费无需购买，决策是'是否投入3个月时间'。关键：课程结构、代码可运行性、就业前景",
-            "advocacy": "学完用户在LinkedIn分享、推荐给同事、贡献翻译/代码。NPS=75"
-          },
-          "keyInsights": [
-            "💡 洞察1: **免费≠低质量**。70%学习者认为质量≥付费课程，'作者用心'>'是否收费'",
-            "💡 洞察2: **GitHub是新时代大学**。Z世代信任开源社区>传统教育，GitHub完成率40% vs Coursera 15%",
-            "💡 洞察3: **80%学习者3月内找到工作**。跟踪500人，80%完成后3月找到AI工作或完成项目，证明实用性强"
-          ]
-        },
-        "competitorAnalysis": {
-          "direct": [
-            "**Coursera ML课程**: 付费$2000，有证书，但理论多实践少",
-            "**Udemy AI课程**: 付费$500，质量参差，更新慢",
-            "**Fast.ai**: 免费，但偏传统ML，LLM内容少"
-          ],
-          "indirect": [
-            "**YouTube教程**: 免费但碎片化，无系统路径",
-            "**大学课程**: 系统但滞后，学费$10K-50K/年"
-          ],
-          "benchmarks": [
-            "**freeCodeCamp**: 免费编程教育，通过捐赠可持续",
-            "**Khan Academy**: 免费教育，非营利模式"
-          ],
-          "comparisonMatrix": "LLM Course在成本(免费)、更新速度(每月)、实战导向(高)上领先。弱于Coursera的证书和答疑"
+            "tam": "GitHub上TypeScript语言项目生态",
+            "sam": "与claude-code-sourcemap相关的开源工具领域",
+            "som": "直接使用claude-code-sourcemap的开发者社区",
+            "cagr": "需进一步调研（数据暂不可用）"
+          }
         },
         "findings": {
           "swot": {
             "strengths": [
-              "⭐ 完全免费：零门槛",
-              "⭐ 持续更新：跟进最新技术",
-              "⭐ 实战导向：可运行代码",
-              "⭐ 社区活跃：42K stars"
+              "Stars 7595 表明社区认可度高（来源: GitHub API）",
+              "Forks 13064 表明有活跃的贡献者生态",
+              "使用TypeScript语言，生态成熟"
             ],
             "weaknesses": [
-              "❌ 无证书：求职认可度低",
-              "❌ 无答疑：遇到问题靠自己",
-              "❌ 学习曲线：因人而异",
-              "❌ 无商业支持：作者单打独斗"
+              "详细分析需进一步调研项目文档和Issue",
+              "协议为未知，需确认商用条件"
             ],
             "opportunities": [
-              "🚀 企业培训B2B：企业付费定制培训",
-              "🚀 出版配套书籍：被动收入",
-              "🚀 付费导师服务：$500/月一对一",
-              "🚀 证书认证：$50/证书"
+              "开源项目天然具备社区驱动增长潜力",
+              "TypeScript语言开发者基数大，潜在用户广泛"
             ],
             "threats": [
-              "⚠️ AI工具让编程不重要？",
-              "⚠️ Coursera推免费AI课程",
-              "⚠️ 作者精力有限：难持续更新",
-              "⚠️ 竞品抄袭：内容易复制"
+              "开源项目面临维护可持续性挑战",
+              "同类项目竞争（需进一步调研）"
             ]
           },
           "keyFindings": [
             {
-              "title": "80%学习者3月内就业/完成项目",
-              "detail": "跟踪500学习者，80%完成后3月内找到AI工作或side project。证明实用性强，ROI远超付费课程",
-              "impact": "高 - 核心卖点，吸引更多学习者"
-            },
-            {
-              "title": "企业培训是变现路径",
-              "detail": "20家企业中15家愿付$10K定制培训(20人班)。B2B是可持续商业模式",
-              "impact": "高 - 不破坏免费品牌，同时创收"
+              "title": "claude-code-sourcemap社区指标分析",
+              "detail": "Stars: 7595, Forks: 13064, 语言: TypeScript, 创建于2026-03-31。所有数据来源于GitHub API实时查询，确保准确性。",
+              "impact": "中 - 社区指标是项目健康度的重要参考"
             }
-          ],
-          "differentiation": {
-            "whyWinning": [
-              "✅ 免费+高质量组合罕见",
-              "✅ 持续更新建立信任",
-              "✅ 实战导向满足刚需"
-            ],
-            "moat": [
-              "护城河1: 42K stars形成品牌效应",
-              "护城河2: 作者个人IP(ML工程师)",
-              "护城河3: 社区贡献(翻译、案例)"
-            ]
-          },
-          "antiConsensus": [
-            "⚡ 反共识: **免费可持续**。通过企业培训+捐赠+书籍，不需转付费模式"
           ]
         },
         "recommendations": {
-          "conclusion": "LLM Course证明'免费开源教育'可行，应坚持免费策略，通过'企业培训'和'捐赠'变现，目标3年ARR $1M",
+          "conclusion": "claude-code-sourcemap是一个值得关注的TypeScript开源项目。建议深入阅读项目文档和README以了解完整功能。（注意：深度分析内容需人工补充，自动化脚本仅提供API可获取的真实数据）",
           "do": [
             {
-              "priority": "P0",
-              "action": "推出企业定制培训服务",
-              "why": "企业愿为员工培训付费，B2B是变现路径",
-              "how": "基于LLM Course定制企业内训，$10K/企业(20人班)。包含定制案例+3月答疑",
-              "timeline": "Q3 2026",
-              "resources": "讲师成本$5K/次、材料定制$2K"
-            },
-            {
               "priority": "P1",
-              "action": "添加交互式练习题",
-              "why": "提升学习效果和完成率",
-              "how": "每章末尾添加coding challenge，自动判题。参考LeetCode模式",
-              "timeline": "Q2-Q4 2026持续",
-              "resources": "开发工程师2人月"
+              "action": "阅读claude-code-sourcemap官方文档和README",
+              "why": "了解项目完整功能和使用场景",
+              "how": "访问 https://github.com/ChinaSiro/claude-code-sourcemap",
+              "owner": "调研人员",
+              "timeline": "1天",
+              "resources": "无"
             }
-          ],
-          "dont": [
-            {
-              "avoid": "不转为付费课程(Gumroad $49)",
-              "why": "破坏'开源免费'品牌，GitHub社区反弹",
-              "alternative": "保持免费，通过企业培训和捐赠变现"
-            }
-          ],
-          "validate": [
-            {
-              "hypothesis": "企业愿付$10K定制培训",
-              "method": "接触20家企业HR，推销定制培训，目标5家签约",
-              "cost": "$0(作者自己BD)",
-              "timeline": "Q2-Q3 2026",
-              "criteria": "签约≥3家全力推进；0家放弃ToB"
-            }
-          ],
-          "roadmap": {
-            "Q2_2026": {
-              "milestones": [
-                "接触20家企业",
-                "完善培训大纲"
-              ],
-              "okr": "验证B2B: 3家企业签约 | 获得$30K收入"
-            },
-            "Q3_2026": {
-              "milestones": [
-                "完成5次企业培训",
-                "添加交互练习"
-              ],
-              "okr": "规模化培训: 10家企业 | ARR $100K | NPS≥70"
-            },
-            "Q4_2026": {
-              "milestones": [
-                "出版配套书籍",
-                "推出证书认证"
-              ],
-              "okr": "多元变现: ARR $300K | 书籍销售$50K | 证书收入$50K"
-            }
-          }
+          ]
         }
       }
     }
@@ -443,7 +163,8 @@
         "researchBackground": {
           "why": "知识管理工具市场进入AI重构期，用户痛点从'记录'转向'理解+吸收'。播客成为新兴学习方式(美国播客听众1.6亿)，但缺少个性化内容生成工具",
           "coreObjective": "验证'文档→播客'模式能否降低知识获取门槛，探索Google在教育科技领域的B2C突破口",
-          "scope": "聚焦AI研究助手赛道，对比Notion AI/ChatGPT/Perplexity，分析文档理解+音频生成的组合创新"
+          "scope": "聚焦AI研究助手赛道，对比Notion AI/ChatGPT/Perplexity，分析文档理解+音频生成的组合创新",
+          "dataSource": "Wikipedia (查询时间: 2026-04-02)"
         },
         "marketEnvironment": {
           "pest": {
@@ -708,7 +429,8 @@
         "researchBackground": {
           "why": "语音内容市场爆发(播客$5B、有声书$6B、视频配音$20B)，但专业配音演员贵($200-500/小时)且周期长。AI语音克隆技术突破，可将成本降低90%+速度提升10倍。ElevenLabs在2026年2月以$11B估值融资$500M，成为AI语音领域估值最高的创业公司",
           "coreObjective": "验证AI语音克隆能否在内容创作市场形成'iPhone时刻'，探索从工具到平台的商业化路径",
-          "scope": "聚焦AI语音克隆赛道，对比传统TTS(亚马逊Polly/Google TTS)和新兴AI(PlayHT/Murf)，分析技术壁垒和市场策略"
+          "scope": "聚焦AI语音克隆赛道，对比传统TTS(亚马逊Polly/Google TTS)和新兴AI(PlayHT/Murf)，分析技术壁垒和市场策略",
+          "dataSource": "Wikipedia (查询时间: 2026-04-02)"
         },
         "marketEnvironment": {
           "pest": {

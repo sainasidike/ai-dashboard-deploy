@@ -6,6 +6,9 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch: # 允许手动触发
 
+permissions:
+  contents: write
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
@@ -16,18 +19,63 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 设置 Bun 环境
-        uses: oven-sh/setup-bun@v1
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v5
         with:
-          bun-version: latest
+          python-version: '3.12'
 
-      - name: 更新数据
+      - name: 运行每日更新脚本
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          bun run update-data.js
+          echo "========================================="
+          echo "开始每日更新 - $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S') 北京时间"
+          echo "========================================="
+          python scripts/daily-update.py
 
-      - name: 提交更改
+      - name: 验证 data.json 格式
+        run: |
+          python -c "
+          import json
+          with open('data.json', 'r') as f:
+              data = json.load(f)
+          required = ['lastUpdate', 'githubTrending', 'aiProducts', 'inspirationLibrary', 'insights']
+          for key in required:
+              assert key in data, f'缺少必要字段: {key}'
+          print('data.json 格式验证通过')
+          print(f'  lastUpdate: {data[\"lastUpdate\"]}')
+          print(f'  githubTrending: {len(data[\"githubTrending\"])} 项')
+          print(f'  aiProducts: {len(data[\"aiProducts\"])} 项')
+          print(f'  inspirationLibrary: {len(data[\"inspirationLibrary\"])} 项')
+          print(f'  insights: {len(data[\"insights\"])} 项')
+          "
+
+      - name: 提交并推送到 main
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 自动更新数据 $(date +'%Y-%m-%d %H:%M:%S')" && git push)
+          if git diff --staged --quiet; then
+            echo "没有数据变化，跳过提交"
+          else
+            DATE=$(TZ='Asia/Shanghai' date +'%Y-%m-%d')
+            git commit -m "每日自动更新 ${DATE}
+
+数据来源:
+- GitHub Stars/Forks: GitHub API (api.github.com)
+- 产品信息: Wikipedia API
+- 深度分析: 保留人工审核内容
+
+Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+            git push origin main
+            echo "已推送到 main 分支"
+          fi
+
+      - name: 部署到 GitHub Pages
+        run: |
+          if git diff --quiet HEAD~1 -- data.json 2>/dev/null; then
+            echo "data.json 无变化，跳过部署"
+          else
+            git push origin main:gh-pages --force
+            echo "已部署到 gh-pages 分支"
+          fi
