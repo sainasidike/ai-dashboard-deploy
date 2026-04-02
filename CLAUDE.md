@@ -1,6 +1,6 @@
 # AI Dashboard 项目文档
 
-> 最后更新: 2026-04-02 | 版本: v3.0
+> 最后更新: 2026-04-02 | 版本: v3.1
 
 ---
 
@@ -241,32 +241,74 @@ curl -s "https://r.jina.ai/https://{product-url}"
 
 ---
 
-## 7. 每日自动更新
+## 7. 每日全量更新（Claude Code 执行）
 
-### 7.1 机制
+### 7.1 触发方式
 
-| 项目 | 详情 |
-|------|------|
-| **频率** | 每天一次 |
-| **时间** | 北京时间 10:00（UTC 02:00） |
-| **触发** | GitHub Actions cron: `0 2 * * *` + 手动触发 |
-| **脚本** | `scripts/daily-update.py`（Python 3.12） |
-| **流程** | 抓取数据 → 更新data.json → 验证格式 → 提交main → 部署gh-pages |
+用户每天打开 Claude Code，输入「更新」（或类似指令），Claude 自动执行完整更新流程。
 
-### 7.2 daily-update.py 逻辑
+### 7.2 完整执行流程
 
-1. **GitHub Trending**：通过GitHub Search API搜索热门仓库，每天轮换语言（Python/TypeScript/Rust/Go/JS/Java/C++）
-2. **AI Products**：查询Wikipedia API更新产品信息，保守更新（不覆盖深度分析）
-3. **差异化**：`ensure_content_differs()` 对比前一天数据hash，确保每次更新有差异
-4. **候选池**：AI产品20个候选、Insight话题20个候选，每天轮换
+Claude 收到更新指令后，按以下步骤执行，**所有板块内容必须全部换新**：
 
-### 7.3 内容差异化策略
+**Step 1: 数据采集**（并行）
+```
+- GitHub API: 搜索当天热门仓库（轮换语言），获取 Stars/Forks/描述等
+- Wikipedia API: 查询当天要调研的 AI 产品词条（通过代理）
+- Wikipedia API: 查询灵感库产品相关行业背景词条
+```
 
-- **GitHub Trending**：每天不同语言 → 不同项目。相同项目则更新Stars/Forks
-- **AI Products**：轮换候选池（20个产品），已调研产品隔周更新数据
-- **Inspiration Library**：每天至少更换1个，覆盖不同赛道
-- **AI Insights**：每天更换2-3个Q&A，结合最新行业动态
-- **校验**：对比前一天data.json，至少60%内容有变化
+**Step 2: 内容生成**（基于真实数据）
+```
+- GitHub Trending: 选 2 个项目，写完整 detailedResearch（SWOT/市场/建议）
+- AI Products: 选 2 个新产品（从候选池轮换），写完整 6 模块 PRD
+- Inspiration Library: 写 2 个新灵感产品，引用 Wikipedia 行业背景
+- AI Insights: 更换 2-3 个 Q&A 话题
+```
+
+**Step 3: 写入 data.json**
+```
+- 用 Python 脚本将新内容写入 data.json
+- 更新 lastUpdate 时间戳
+- 验证 JSON 格式正确
+```
+
+**Step 4: 推送部署**
+```bash
+export https_proxy=http://127.0.0.1:7890
+git add data.json
+git commit -m "每日全量更新 YYYY-MM-DD\n\n数据来源:\n- GitHub: GitHub API\n- [产品名]: Wikipedia\n- 市场数据: 行业估算"
+git push origin main
+git push origin main:gh-pages --force
+```
+
+### 7.3 候选池（每天轮换，不重复前一天内容）
+
+**AI Products 候选池**（20个）：
+NotebookLM, ElevenLabs, Cursor, Perplexity, Midjourney,
+Runway, GitHub Copilot, Replit, v0.dev, Suno,
+Pika, HeyGen, Jasper, Copy.ai, Otter.ai,
+Synthesia, Descript, Grammarly AI, Canva AI, Claude
+
+**Inspiration 赛道候选池**：
+心理健康, 精准农业, AI教育, AI金融, AI法律,
+AI创作, AI医疗影像, AI供应链, AI客服, AI招聘,
+AI房产, AI旅行, AI宠物, AI音乐, AI翻译,
+AI安防, AI养老, AI环保, AI体育, AI餐饮
+
+**Insights 话题候选池**（20个）：
+护城河, 商业化, PMF, 定价, 增长黑客,
+多模态, 数据隐私, AI Agent, 幻觉, 开源vs闭源,
+AI监管, AI+教育, AI+医疗, AI+金融, RAG,
+AI基础设施, 小模型vs大模型, AI芯片, 端侧AI, AI安全
+
+### 7.4 内容要求
+
+- **100% 全新**：所有板块内容与前一天不同
+- **数据真实**：严格遵循第5章数据真实性规范
+- **来源可追溯**：每条数据标注来源，底部 References 自动汇总
+- **深度完整**：每个产品/项目包含完整 6 模块 PRD（第6章标准）
+- **禁止免责话术**：不出现「需人工补充」等话术（第5.6节）
 
 ---
 
@@ -332,8 +374,9 @@ git push origin main:gh-pages --force
 | 2026-04-02 | v2.1 | 每日自动更新（GitHub Actions + Python脚本） |
 | 2026-04-02 | v2.2 | 底部References引用板块 + 产品调研规范 |
 | 2026-04-02 | v3.0 | 全部产品调研重写（真实API数据+Wikipedia验证）+ CLAUDE.md重构 |
+| 2026-04-02 | v3.1 | 确立每日全量更新机制：Claude Code手动执行，所有板块100%换新 |
 
 ---
 
-**文档版本**: v3.0
+**文档版本**: v3.1
 **适用范围**: AI Dashboard 全部开发与维护
